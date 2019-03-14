@@ -1,16 +1,12 @@
 <template>
   <div class="hello">
-
-    <div class="sidenav">
-      <router-link to="/" id="hello"><b>Home</b></router-link>
-      <router-link to="/app/logbook" id="logbook">Logbook</router-link>
-    </div>
-
     <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="" target="_blank">Login</a></li>
-    </ul>
+    <div id="img" >
+      <img src="@/assets/DietPlanners.png" height="300" width="300"/>
+    </div>
+    <div style="font-size: 30px; color: blue">
+    <router-link to="/login"><b>Login</b></router-link>
+    </div>
   </div>
 </template>
 
@@ -19,7 +15,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Diet Planners'
     }
   }
 }
@@ -34,6 +30,11 @@ h1, h2 {
 ul {
   list-style-type: none;
   padding: 0;
+}
+router-link {
+    position: absolute;
+    font-weight: bold; 
+    font-size: 30
 }
 
 li {
