@@ -36,15 +36,11 @@ export default {
     },
     methods: {
         login: function (event) {
-            this.$router.push('/app/logbook')
-            console.log("testtt");
-
+            this.$router.push('/app/myaccount')
         }
     }
 }
 </script>
-
-
 <style scoped>
 .login {
     /* background-color: blue; */

@@ -1,8 +1,9 @@
 <template>
   <div id="logbook">
     <div class="sidenav">
-      <router-link to="/" id="hello">Home</router-link>
-      <router-link to="/app/logbook" id="logbook"><b>Logbook</b></router-link>
+      <router-link to="/">My Account</router-link>
+      <router-link to="/app/logbook"><b>Logbook</b></router-link>
+      <router-link to="/"><b>Logout</b></router-link>
     </div>
 
     <div id="entries">
