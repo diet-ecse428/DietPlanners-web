@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
     <div class="sidenav">
-      <router-link to="/app/myaccount"><b>My Account</b></router-link>
-      <router-link to="/app/logbook"><b>Logbook</b></router-link>
+      <router-link to="/app/myaccount"><b><u>My Account</u></b></router-link>
+      <router-link to="/app/logbook">Logbook</router-link>
       <router-link to="/">Logout</router-link>
     </div>
     <h1>{{ msg }}</h1>
