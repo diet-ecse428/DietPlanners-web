@@ -10,22 +10,58 @@ var AXIOS = axios.create({
   headers: { 'Access-Control-Allow-Origin': frontendUrl }
 })
 
+// Objects
+function LogbookDto(){
+}
+
+function EntryDto(){
+}
+
+
+function foodDto(){
+}
+
+
 export default {
   name: 'login',
   data () {
     return {
-      entryId: "",
-      calories: "",
-      serving: "",
-      mealType: "Breakfast",
+      logbookId: null,
+      selectedEntryId: null,
+
+      entries: [],
+      foods: [],
+      workouts: [],
+      liquids: [],
+
+      newFoodCalories: "",
+      newFoodServing: "",
+      newFoodMealType: "Breakfast",
       message: ""
     }
   },
   created: function () {
+    this.loadLogbook();
   },
   methods: {
-    addToLogbook: async function(entryId, calories, serving, mealType) {
-      this.message = "Backend onnection isn't setup yet"
+    loadLogbook: function(){
+
+    },
+    loadEntry: function(){
+      //
+    },
+    loadFoods: function(){
+
+    },
+    loadLiquids: function(){
+
+    },
+    loadWorkouts: function(){
+
+    },
+    addFoodToEntry: async function(entryId, calories, serving, mealType) {
+      this.message = "Backend connection isn't setup yet"
+
       var params = {
         entryId: entryId,
         calories: calories,

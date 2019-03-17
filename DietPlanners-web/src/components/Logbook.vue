@@ -5,15 +5,40 @@
       <router-link to="/app/logbook"><b><u>Logbook</u></b></router-link>
       <router-link to="/" id="logout">Logout</router-link>
     </div>
-
-    <div id="entries">
+    <div id="logbook">
       <h1>
-        Your Logbook
+        LOGBOOK
       </h1>
-      <table >
+      <table>
         <thead>
           <tr id="header">
             <th class="th">Entry Id</th>
+            <th class="th">Date</th>
+            <th class="th">Total Calories</th>
+            <th class="th">Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="">
+            <td>1</td>
+            <td>March 17th 2019</td>
+            <td>2500</td>
+            <td>Sample Entry</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="entry">
+      <h1>
+        SELECTED ENTRY
+      </h1>
+      <h2>
+        Foods
+      </h2>
+      <table >
+        <thead>
+          <tr id="header">
+            <th class="th">Food Id</th>
             <th class="th">Calories</th>
             <th class="th">Serving</th>
             <th class="th">Type</th>
@@ -22,36 +47,112 @@
         </thead>
         <tbody>
           <tr v-for="">
-            <td>sample</td>
+            <td>1</td>
             <td>500</td>
             <td>2</td>
             <td>Breakfast</td>
           </tr>
+
         </tbody>
+
       </table>
+      <h2>
+        Liquids
+      </h2>
+      <table >
+        <thead>
+        <tr id="header">
+          <th class="th"></th>
+          <th class="th"></th>
+          <th class="th"></th>
+          <th class="th"></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        </tbody>
+
+      </table>
+      <h2>
+        Workouts
+      </h2>
+      <table >
+        <thead>
+        <tr id="header">
+          <th class="th"></th>
+          <th class="th"></th>
+          <th class="th"></th>
+          <th class="th"></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="">
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+
+        </tbody>
+
+      </table>
+
     </div>
+    <div id="additems">
+      <div id="newfood">
+        <h1>
+          Add Food
+        </h1>
+        <input v-model="newFoodCalories" placeholder="Calories">
+        <br />
+        <input v-model="newFoodServing" placeholder="Serving">
+        <br />
+        <select v-model="newFoodServing" placeholder="Meal Type">
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+        </select>
+        <br />
+        <button @click="addFoodToEntry(newFoodCalories, newFoodServing, newFoodServing)" name="addButton">Add to Logbook</button>
+        <br />
+      </div>
+      <div id="newworkout">
+          <h1>
+          Add Workout
+        </h1>
 
-    <div id="newFood">
-      <h1>
-        Add item to logbook
-      </h1>
+        <input  placeholder="">
+        <br />
+        <input placeholder="">
+        <br />
+        <br />
+        <button @click="" name="addButton">Add to Logbook</button>
+        <br />
+        <p>{{ message }}</p>
+      </div>
+      <div id="newliquid">
+        <h1>
+          Add Liquid
+        </h1>
 
-      <input v-model="entryId" placeholder="entry id">
-      <br />
-      <input v-model="calories" placeholder="calories">
-      <br />
-      <input v-model="serving" placeholder="serving">
-      <br />
-      <select v-model="mealType" placeholder="Meal Type">
-        <option value="Breakfast">Breakfast</option>
-        <option value="Lunch">Lunch</option>
-        <option value="Dinner">Dinner</option>
-        <option value="Snack">Snack</option>
-      </select>
-      <br />
-      <button @click="addToLogbook(entryId, calories, serving, mealType)" name="addButton">Add to Logbook</button>
-      <br />
-      <p>{{ message }}</p>
+        <input  placeholder="">
+        <br />
+        <input  placeholder="">
+        <br />
+
+        <br />
+        <button @click="" name="addButton">Add to Logbook</button>
+        <br />
+      </div>
     </div>
   </div>
 
@@ -103,9 +204,18 @@
     color: black;
   }
 
+  /* page style */
   #logout {
     position: absolute;
     bottom: 1%;
     left: 21%;
   }
+  #additems {
+    display:flex;
+    justify-content: center;
+  }
+  #additems div {
+    padding:1%;
+  }
+
 </style>
