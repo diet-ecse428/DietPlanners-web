@@ -56,7 +56,6 @@ a {
   background-color:#0590fa; /* Light Blue */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 20px;
-  border-radius: 10px;
 
 }
 
