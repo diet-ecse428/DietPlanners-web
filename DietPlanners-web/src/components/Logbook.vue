@@ -86,23 +86,18 @@
       <table >
         <thead>
         <tr id="header">
-          <th class="th"></th>
-          <th class="th"></th>
-          <th class="th"></th>
-          <th class="th"></th>
-
+          <th class="th">Type</th>
+          <th class="th">Duration</th>
+          <th class="th">Calories Lost</th>
         </tr>
         </thead>
         <tbody>
-        <tr v-for="">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="(data, index) in workouts" :key='index'>
+          <td>{{data.type}}</td>
+          <td>{{data.duration}}</td>
+          <td>{{data.caloriesLost}}</td>
         </tr>
-
         </tbody>
-
       </table>
 
     </div>
@@ -129,16 +124,20 @@
           <h1>
           Add Workout
         </h1>
-
-        <input  placeholder="">
-        <br />
-        <input placeholder="">
-        <br />
-        <br />
-        <button @click="" name="addButton">Add to Logbook</button>
+        <select v-model="newWorkoutType" >
+          <option value="" disabled hidden> Workout Type</option>
+          <option value="cardio">Cardio</option>
+          <option value="strength training">Strength Training</option>
+        </select>
+        <br/>
+        <input v-model="duration" placeholder="Duration (minutes)">
+        <br /> 
+        <input v-model="caloriesBurned" placeholder="Calories Burned">
         <br />
         <p>{{ message }}</p>
+        <button @click="addWorkoutEntry()" name="addWorkoutButton">Add Workout to Logbook</button>  
       </div>
+      
       <div id="newliquid">
         <h1>
           Add Liquid
@@ -203,6 +202,8 @@
   .sidenav a:hover {
     color: black;
   }
+
+
 
   /* page style */
   #logout {
