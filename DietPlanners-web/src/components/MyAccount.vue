@@ -34,7 +34,7 @@
                 <div v-show="submitted && !startweight" class="invalid-feedback">Start weight is required</div>
             </div>
             <div class="submit">
-                <button v-on:click="submitinfo" style="position: relative ;  margin-top: 25px;">Submit</button>
+               <button @click="addUserInfo(username, height, targetweight, targetdate, startweight)" name="addButton">Add User Information</button>
             </div>
       </form>
     </div>
@@ -50,6 +50,9 @@ export default {
     }
   }
 }
+</script>
+
+<script src="../jsFiles/myaccount.js">
 </script>
 
 <style scoped>
@@ -85,7 +88,6 @@ export default {
     color: black;
   }
 
-<<<<<<< HEAD
   .account-page {
     /* background-color: blue; */
     height: 50vh; 
@@ -94,12 +96,12 @@ export default {
 
   /* color: white; */
 }
-=======
   #logout {
     position: absolute;
     bottom: 1%;
     left: 21%;
   }
->>>>>>> 05d2bd00e4420ed33b469a608031f48214d356e7
 
 </style>
+
+
