@@ -48,7 +48,7 @@ export default {
       message: "",
       newWorkoutType: "",
       duration: "",
-      caloriesBurned:""      
+      caloriesLost:""      
     }
   },
   created: function () {
@@ -106,6 +106,9 @@ export default {
       }
     },
     addWorkoutToEntry: async function(entryId, caloriesLost, type, duration) {
+
+      this.message = "Backend connection isn't setup yet";
+      console.log("test");
       var params ={
         entryId:entryId,
         caloriesLost: caloriesLost,
