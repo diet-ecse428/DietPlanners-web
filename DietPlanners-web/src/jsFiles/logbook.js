@@ -52,17 +52,7 @@ export default {
     }
   },
   created: function () {
-    try{
-      let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
-      this.response = response.data;
-      for (var i = 0; i < this.response.length; i++) {
-        var workout = new WorkoutDto(response.data[i].duration, response.data[i].caloriesLost, response.data[i].type, response.data[i].id,  response.data[i].entryId);
-        this.workouts.push(workout);
-      }
-      }catch(error){
-        console.log(error.message);
-        this.errorRoute = error.message;
-      }
+    //this.loadLogbook()
   },
   methods: {
     loadLogbook: function(){
@@ -79,7 +69,7 @@ export default {
     },
     loadWorkouts: function(){
       try{
-        let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
+        //let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var workout = new WorkoutDto(response.data[i].duration, response.data[i].caloriesLost, response.data[i].type, response.data[i].id,  response.data[i].entryId);
