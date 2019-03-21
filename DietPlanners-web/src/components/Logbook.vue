@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr v-for="(data, index) in entries" :key='index'>
+            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
               <td>{{data.entryId}}</td>
               <td>{{data.date}}</td>
               <td>{{data.totalCalCount}}</td>
@@ -29,6 +29,19 @@
             </tr>
         </tbody>
       </table>
+      <h3>
+        Add Entry
+      </h3>
+      <input v-model="newTotalCalCount" placeholder="Total Calories">
+      <br />
+      <input v-model="newNote" placeholder="Note">
+      <br />
+      <input v-model="newDate" placeholder="Date (dd-mm-yyyy)">
+      <br />
+      <button @click="addEntryToLogbook(newTotalCalCount, newNote, newDate)" name="addButton">Add to Logbook</button>
+      <br />
+      <br />
+      <p>{{ logbookMessage }}</p>
     </div>
     <div id="entry">
       <h1>
@@ -37,30 +50,52 @@
       <h2>
         Foods
       </h2>
-      <table >
-        <thead>
-          <tr id="header">
-            <th class="th">Food Id</th>
-            <th class="th">Calories</th>
-            <th class="th">Serving</th>
-            <th class="th">Type</th>
+      <div class="foods">
+        <table >
+          <thead>
+            <tr id="header">
+              <th class="th">Food Id</th>
+              <th class="th">Calories</th>
+              <th class="th">Serving</th>
+              <th class="th">Type</th>
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(data, index) in foods" :key='index'>
-            <td>{{data.id}}</td>
-            <td>{{data.calories}}</td>
-            <td>{{data.serving}}</td>
-            <td>{{data.type}}</td>
-          </tr>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(data, index) in foods" :key='index' v-on:click="selectedFoodId = data.id; foodFilter((data,index));" v-bind:class="{selected: selectedFood === (data,index)}">
+              <td>{{data.id}}</td>
+              <td>{{data.calories}}</td>
+              <td>{{data.serving}}</td>
+              <td>{{data.mealType}}</td>
+            </tr>
 
-        </tbody>
+          </tbody>
+        </table>
+        <div id="newfood">
+          <h3>
+            Add Food
+          </h3>
+          <input v-model="newFoodCalories" placeholder="Calories">
+          <br />
+          <input v-model="newFoodServing" placeholder="Serving">
+          <br />
+          <select v-model="newFoodMealType" placeholder="Meal Type">
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Snack">Snack</option>
+          </select>
+          <br />
+          <button @click="addFoodToEntry(newFoodCalories, newFoodServing, newFoodMealType)" name="addButton">Add to Entry</button>
+          <br />
+          <button @click="deleteFood(selectedFoodId)" name="addButton">Delete Selected Food</button>
+          <br />
+          <br />
+          <p>{{ foodMessage }}</p>
+        </div>
+      </div>
+      <br/>
 
-      </table>
-      <button @click="deleteFood(foodId)" name="addButton">Delete Selected Food</button>
-      <br />
-      <br />
       <h2>
         Liquids
       </h2>
@@ -83,6 +118,23 @@
         </tbody>
 
       </table>
+      <div id="newliquid">
+        <h3>
+          Add Liquid
+        </h3>
+
+        <input  placeholder="">
+        <br />
+        <input  placeholder="">
+        <br />
+
+        <br />
+        <button @click="" name="addButton">Add to Entry</button>
+        <br />
+      </div>
+
+      <br/>
+
       <h2>
         Workouts
       </h2>
@@ -102,32 +154,10 @@
         </tr>
         </tbody>
       </table>
-
-
-    </div>
-    <div id="additems">
-      <div id="newfood">
-        <h1>
-          Add Food
-        </h1>
-        <input v-model="newFoodCalories" placeholder="Calories">
-        <br />
-        <input v-model="newFoodServing" placeholder="Serving">
-        <br />
-        <select v-model="newFoodServing" placeholder="Meal Type">
-          <option value="Breakfast">Breakfast</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Dinner">Dinner</option>
-          <option value="Snack">Snack</option>
-        </select>
-        <br />
-        <button @click="addFoodToEntry(newFoodCalories, newFoodServing, newFoodServing)" name="addButton">Add to Logbook</button>
-        <br />
-      </div>
       <div id="newworkout">
-          <h1>
+        <h3>
           Add Workout
-        </h1>
+        </h3>
         <select v-model="newWorkoutType" >
           <option value="" disabled hidden> Workout Type</option>
           <option value="cardio">Cardio</option>
@@ -135,30 +165,16 @@
         </select>
         <br/>
         <input v-model="duration" placeholder="Duration (minutes)">
-        <br /> 
-        <input v-model="caloriesBurned" placeholder="Calories Burned">
         <br />
-        <button @click="addWorkoutToEntry(12211221,newWorkoutType,duration,caloriesBurned)" name="addWorkoutButton">Add Workout to Logbook</button>
+        <input v-model="caloriesLost" placeholder="Calories Burned">
+        <br />
+        <button @click="addWorkoutToEntry(12211221,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
         <br/>
         <p>{{ message }}</p>
       </div>
-       
-      
-      <div id="newliquid">
-        <h1>
-          Add Liquid
-        </h1>
 
-        <input  placeholder="">
-        <br />
-        <input  placeholder="">
-        <br />
-
-        <br />
-        <button @click="" name="addButton">Add to Logbook</button>
-        <br />
-      </div>
     </div>
+
   </div>
 
 </template>
@@ -225,4 +241,10 @@
     padding:1%;
   }
 
+  .selected {
+    background-color: lightskyblue;
+  }
+  .foods {
+    display: ;
+  }
 </style>

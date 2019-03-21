@@ -54,33 +54,68 @@ export default {
   name: 'logbook',
   data () {
     return {
-      logbookId: null,
+      logbookId: 1,
       selectedEntryId: null,
+      selectedEntry: null,
+      selectedFoodId: null,
+      selectedFood: null,
 
       entries: [],
       foods: [],
       workouts: [],
       liquids: [],
 
+      newTotalCalCount: "",
+      newNote: "",
+      newDate: "",
+
       newFoodCalories: "",
       newFoodServing: "",
       newFoodMealType: "Breakfast",
-      message: "",
+
       newWorkoutType: "",
       duration: "",
-      caloriesLost:""      
+      caloriesLost:"",
+
+      message: "",
+      foodMessage: "",
+      logbookMessage: "",
     }
   },
   created: function () {
     this.refresh();
     },
   methods: {
+    addEntryToLogbook: async function(totcal, note, date) {
+      try{
+        let response = await AXIOS.post('/api/entry/create?logbookId=' + this.logbookId+ '&totCalCount=' + totcal + '&note=' + note + '&date=' + date);
+        console.log(response);
+
+        if (response != null) {
+          this.logbookMessage = "Successfully added entry to logbook "
+        }
+        else {
+          this.logbookMessage = "error in adding entry to logbook"
+        }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+      this.loadLogbook();
+    },
+    entryFilter: function(entry) {
+      this.selectedEntry = entry;
+    },
+    foodFilter: function(food) {
+      this.selectedFood = food;
+    },
     refresh: function() {
       this.loadLogbook()
     },
     loadLogbook: async function(){
       try{
-        let response = await AXIOS.get();
+        this.entries = [];
+        let response = await AXIOS.get('/api/entry/getAllEntries/' + this.logbookId+ '/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var entry = new EntryDto(response.data[i].date,
@@ -89,7 +124,7 @@ export default {
                                    response.data[i].note,
                                    response.data[i].entryId,
                                    response.data[i].logbookId);
-          this.workouts.push(food);
+          this.entries.push(entry);
         }
       }catch(error){
         console.log(error.message);
@@ -104,7 +139,8 @@ export default {
     },
     loadFoods: async function(){
       try{
-        let response = await AXIOS.get();
+        this.foods = [];
+        let response = await AXIOS.get('/api/food/getAllFoods/' + this.selectedEntryId+ '/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var food = new FoodDto(response.data[i].mealType,
@@ -112,7 +148,7 @@ export default {
                                     response.data[i].serving,
                                     response.data[i].id,
                                     response.data[i].entryId);
-          this.workouts.push(food);
+          this.foods.push(food);
         }
       }catch(error){
         console.log(error.message);
@@ -121,14 +157,15 @@ export default {
     },
     loadLiquids: async function(){
       try{
-        let response = await AXIOS.get();
+        this.liquids = [];
+        let response = await AXIOS.get('/api/liquid/getAllLiquids/' + this.selectedEntryId+ '/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var liquid = new LiquidDto(response.data[i].calories,
                                    response.data[i].volume,
                                    response.data[i].id,
                                    response.data[i].entryId);
-          this.workouts.push(liquid);
+          this.liquids.push(liquid);
         }
       }catch(error){
         console.log(error.message);
@@ -137,7 +174,8 @@ export default {
     },
     loadWorkouts: async function(){
       try{
-        let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
+        this.workouts = [];
+        let response = await AXIOS.get('/api/workout/getAllWorkouts/' + this.selectedEntryId+ '/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var workout = new WorkoutDto(response.data[i].duration,
@@ -152,47 +190,48 @@ export default {
           this.errorRoute = error.message;
         }
     },
-    addFoodToEntry: async function(entryId, calories, serving, mealType) {
-      this.message = "Backend connection isn't setup yet"
-
-      var params = {
-        entryId: entryId,
-        calories: calories,
-        serving: serving,
-        mealType: mealType
+    addFoodToEntry: async function(calories, serving, mealType) {
+      if (this.selectedEntryId === null){
+        this.foodMessage = "Please select an entry";
+        return;
       }
 
       try{
-        let response = await AXIOS.post('/api/food/create/', params);
+        let response = await AXIOS.post('/api/food/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&mealtype=' + mealType + '&serving=' + serving);
         console.log(response);
 
         if (response != null) {
-          this.message = "successfully added entry"
+          this.foodMessage = "Successfully added food "
         }
         else {
-          this.message = "error in adding food entry"
+          this.foodMessage = "error in adding food entry"
         }
       }catch(error){
         console.log(error.message);
         this.errorRoute = error.message;
       }
+      this.loadFoods();
     },
-    deleteFood: async function(foodId) {
-      // try{
-      //   let response = await AXIOS.post('/api/workout/create/', params);
-      //   console.log(response);
-      //
-      //   if (response != null) {
-      //     this.message = "successfully added workout to logbook"
-      //   }
-      //   else {
-      //     this.message = "error in adding workout entry"
-      //   }
-      // }catch(error){
-      //   console.log(error.message);
-      //   this.errorRoute = error.message;
-      // }
-      // this.refresh();
+    deleteFood: async function() {
+      try{
+        if (this.selectedFoodId === null){
+          this.foodMessage = "Please select a food";
+          return;
+        }
+        let response = await AXIOS.post('/api/food/remove/'+ this.selectedFoodId+'/', {}, {});
+        console.log(response);
+
+        if (response != null) {
+          this.foodMessage = "Successfully deleted food"
+        }
+        else {
+          this.foodMessage = "error in deleting food"
+        }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+      this.loadFoods();
     },
     addWorkoutToEntry: async function(entryId, caloriesLost, type, duration) {
       console.log("test");
@@ -203,7 +242,7 @@ export default {
         duration:duration
       }
       try{
-        let response = await AXIOS.post('/api/workout/create/', params);
+        let response = await AXIOS.post('/api/workout/create', params);
         console.log(response);
 
         if (response != null) {
