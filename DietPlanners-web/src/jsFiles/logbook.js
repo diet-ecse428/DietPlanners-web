@@ -25,14 +25,14 @@ function EntryDto(date,remainingCal,totalCalCount,note,entryId, logbookId){
 }
 
 
-function liquidDto(calories,volume,id,entryId){
+function LiquidDto(calories,volume,id,entryId){
   this.calories = calories;
   this.volume = volume;
   this.id = id;
   this.entryId = entryId;
 }
 
-function foodDto(mealType,calories,serving,id,entryId){
+function FoodDto(mealType,calories,serving,id,entryId){
   this.mealType = mealType;
   this.calories = calories;
   this.serving = serving;
@@ -79,7 +79,22 @@ export default {
       this.loadLogbook()
     },
     loadLogbook: async function(){
-      //load all entries
+      try{
+        let response = await AXIOS.get();
+        this.response = response.data;
+        for (var i = 0; i < this.response.length; i++) {
+          var entry = new EntryDto(response.data[i].date,
+                                   response.data[i].remainingCal,
+                                   response.data[i].totalCalCount,
+                                   response.data[i].note,
+                                   response.data[i].entryId,
+                                   response.data[i].logbookId);
+          this.workouts.push(food);
+        }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
     },
     loadEntry: function(){
       //called when an entry is selected from the logbook
@@ -92,7 +107,7 @@ export default {
         let response = await AXIOS.get();
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
-          var food = new foodDto(response.data[i].mealType,
+          var food = new FoodDto(response.data[i].mealType,
                                     response.data[i].calories,
                                     response.data[i].serving,
                                     response.data[i].id,
@@ -109,7 +124,7 @@ export default {
         let response = await AXIOS.get();
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
-          var liquid = new liquidDto(response.data[i].calories,
+          var liquid = new LiquidDto(response.data[i].calories,
                                    response.data[i].volume,
                                    response.data[i].id,
                                    response.data[i].entryId);

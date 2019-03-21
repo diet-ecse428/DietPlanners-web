@@ -15,16 +15,18 @@
             <th class="th">Entry Id</th>
             <th class="th">Date</th>
             <th class="th">Total Calories</th>
+            <th class="th">Remaining Calories</th>
             <th class="th">Note</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="">
-            <td>1</td>
-            <td>March 17th 2019</td>
-            <td>2500</td>
-            <td>Sample Entry</td>
-          </tr>
+            <tr v-for="(data, index) in entries" :key='index'>
+              <td>{{data.entryId}}</td>
+              <td>{{data.date}}</td>
+              <td>{{data.totalCalCount}}</td>
+              <td>{{data.remainingCal}}</td>
+              <td>{{data.note}}</td>
+            </tr>
         </tbody>
       </table>
     </div>
