@@ -52,7 +52,7 @@ export default {
     }
   },
   created: function () {
-    //this.loadLogbook()
+    this.loadLogbook()
   },
   methods: {
     loadLogbook: function(){
@@ -67,9 +67,9 @@ export default {
     loadLiquids: function(){
 
     },
-    loadWorkouts: function(){
+    loadWorkouts: async function(){
       try{
-        //let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
+        let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var workout = new WorkoutDto(response.data[i].duration, response.data[i].caloriesLost, response.data[i].type, response.data[i].id,  response.data[i].entryId);
