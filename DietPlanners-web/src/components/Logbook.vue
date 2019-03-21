@@ -56,6 +56,7 @@
         </tbody>
 
       </table>
+      <button @click="deleteFood(foodId)" name="addButton">Delete Selected Food</button>
       <h2>
         Liquids
       </h2>
@@ -99,6 +100,7 @@
         </tr>
         </tbody>
       </table>
+
 
     </div>
     <div id="additems">

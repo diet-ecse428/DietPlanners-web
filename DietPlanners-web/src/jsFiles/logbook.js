@@ -52,14 +52,21 @@ export default {
     }
   },
   created: function () {
-    this.loadLogbook()
-  },
+    this.refresh();
+    },
   methods: {
-    loadLogbook: function(){
-      this.loadWorkouts()
+    refresh: function() {
+      this.loadLogbook()
+    },
+    loadLogbook: async function(){
+      //load all entries
+
     },
     loadEntry: function(){
-      //
+      //called when an entry is selected from the logbook
+      this.loadFoods()
+      this.loadLiquids()
+      this.loadWorkouts();
     },
     loadFoods: function(){
 
@@ -105,9 +112,24 @@ export default {
         this.errorRoute = error.message;
       }
     },
+    deleteFood: async function(foodId) {
+      // try{
+      //   let response = await AXIOS.post('/api/workout/create/', params);
+      //   console.log(response);
+      //
+      //   if (response != null) {
+      //     this.message = "successfully added workout to logbook"
+      //   }
+      //   else {
+      //     this.message = "error in adding workout entry"
+      //   }
+      // }catch(error){
+      //   console.log(error.message);
+      //   this.errorRoute = error.message;
+      // }
+      // this.refresh();
+    },
     addWorkoutToEntry: async function(entryId, caloriesLost, type, duration) {
-
-      this.message = "Backend connection isn't setup yet";
       console.log("test");
       var params ={
         entryId:entryId,
