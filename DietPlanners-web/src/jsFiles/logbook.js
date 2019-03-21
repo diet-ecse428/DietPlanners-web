@@ -11,14 +11,26 @@ var AXIOS = axios.create({
 })
 
 // Objects
-function LogbookDto(){
+function LogbookDto(logbookId){
+    this.logbookId = logbookId;
 }
 
-function EntryDto(){
+function EntryDto(date,remainingCal,totalCalCount,note,entryId, logbookId){
+  this.date = date;
+  this.remainingCal = remainingCal;
+  this.totalCalCount = totalCalCount;
+  this.note = note;
+  this.entryId = entryId;
+  this.logbookId = logbookId;
 }
 
 
-function foodDto(){
+function foodDto(mealType,calories,serving,id,entryId){
+  this.mealType = mealType;
+	this.calories = calories;
+	this.serving = serving;
+	this.id = id;
+	this.entryId = entryId;
 }
 
 function WorkoutDto( duration,caloriesLost,type,id,entryId){
@@ -52,7 +64,7 @@ export default {
     }
   },
   created: function () {
-    //this.loadLogbook()
+    this.loadLogbook()
   },
   methods: {
     loadLogbook: function(){
@@ -67,9 +79,9 @@ export default {
     loadLiquids: function(){
 
     },
-    loadWorkouts: function(){
+    loadWorkouts: async function(){
       try{
-        //let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
+        let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var workout = new WorkoutDto(response.data[i].duration, response.data[i].caloriesLost, response.data[i].type, response.data[i].id,  response.data[i].entryId);
