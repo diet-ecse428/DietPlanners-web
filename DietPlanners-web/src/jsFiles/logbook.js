@@ -25,13 +25,21 @@ function EntryDto(date,remainingCal,totalCalCount,note,entryId, logbookId){
 }
 
 
+function liquidDto(calories,volume,id,entryId){
+  this.calories = calories;
+  this.volume = volume;
+  this.id = id;
+  this.entryId = entryId;
+}
+
 function foodDto(mealType,calories,serving,id,entryId){
   this.mealType = mealType;
-	this.calories = calories;
-	this.serving = serving;
-	this.id = id;
-	this.entryId = entryId;
+  this.calories = calories;
+  this.serving = serving;
+  this.id = id;
+  this.entryId = entryId;
 }
+
 
 function WorkoutDto( duration,caloriesLost,type,id,entryId){
     this.duration = duration;
@@ -72,7 +80,6 @@ export default {
     },
     loadLogbook: async function(){
       //load all entries
-
     },
     loadEntry: function(){
       //called when an entry is selected from the logbook
@@ -80,18 +87,49 @@ export default {
       this.loadLiquids()
       this.loadWorkouts();
     },
-    loadFoods: function(){
-
+    loadFoods: async function(){
+      try{
+        let response = await AXIOS.get();
+        this.response = response.data;
+        for (var i = 0; i < this.response.length; i++) {
+          var food = new foodDto(response.data[i].mealType,
+                                    response.data[i].calories,
+                                    response.data[i].serving,
+                                    response.data[i].id,
+                                    response.data[i].entryId);
+          this.workouts.push(food);
+        }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
     },
-    loadLiquids: function(){
-
+    loadLiquids: async function(){
+      try{
+        let response = await AXIOS.get();
+        this.response = response.data;
+        for (var i = 0; i < this.response.length; i++) {
+          var liquid = new liquidDto(response.data[i].calories,
+                                   response.data[i].volume,
+                                   response.data[i].id,
+                                   response.data[i].entryId);
+          this.workouts.push(liquid);
+        }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
     },
     loadWorkouts: async function(){
       try{
         let response = await AXIOS.get('/api/workout/getAllWorkouts/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
-          var workout = new WorkoutDto(response.data[i].duration, response.data[i].caloriesLost, response.data[i].type, response.data[i].id,  response.data[i].entryId);
+          var workout = new WorkoutDto(response.data[i].duration,
+                                       response.data[i].caloriesLost,
+                                       response.data[i].type,
+                                       response.data[i].id,
+                                       response.data[i].entryId);
           this.workouts.push(workout);
         }
         }catch(error){

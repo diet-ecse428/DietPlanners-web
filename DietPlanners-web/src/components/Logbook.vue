@@ -46,36 +46,36 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="">
-            <td>1</td>
-            <td>500</td>
-            <td>2</td>
-            <td>Breakfast</td>
+          <tr v-for="(data, index) in foods" :key='index'>
+            <td>{{data.id}}</td>
+            <td>{{data.calories}}</td>
+            <td>{{data.serving}}</td>
+            <td>{{data.type}}</td>
           </tr>
 
         </tbody>
 
       </table>
       <button @click="deleteFood(foodId)" name="addButton">Delete Selected Food</button>
+      <br />
+      <br />
       <h2>
         Liquids
       </h2>
       <table >
         <thead>
         <tr id="header">
-          <th class="th"></th>
-          <th class="th"></th>
-          <th class="th"></th>
-          <th class="th"></th>
+          <th class="th">Id</th>
+          <th class="th">Calories</th>
+          <th class="th">Volume</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr v-for="">
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr v-for="(data, index) in liquids" :key='index'>
+          <td>{{data.id}}</td>
+          <td>{{data.calories}}</td>
+          <td>{{data.volume}}</td>
         </tr>
 
         </tbody>
