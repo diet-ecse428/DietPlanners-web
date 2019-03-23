@@ -11,80 +11,68 @@ var AXIOS = axios.create({
 })
 
 // Objects
-function LogbookDto(){
+function userDto(userId){
+    this.userId = userId;
 }
 
-function EntryDto(){
+function EntryDto(username, height, targetweight, targetdate, startweight){
+  this.username = username;
+  this.height = height;
+  this.targetweight = targetweight;
+  this.targetdate = targetdate;
+  this.startweight = startweight;
 }
-
-
-function foodDto(){
-}
-
 
 export default {
-  name: 'login',
+  name: 'register',
   data () {
     return {
-      logbookId: null,
+      logbookId: 1,
       selectedEntryId: null,
+      selectedEntry: null,
+      selectedFoodId: null,
+      selectedFood: null,
 
       entries: [],
       foods: [],
       workouts: [],
       liquids: [],
 
+      newTotalCalCount: "",
+      newNote: "",
+      newDate: "",
+
       newFoodCalories: "",
       newFoodServing: "",
       newFoodMealType: "Breakfast",
-      message: ""
+
+      newWorkoutType: "",
+      duration: "",
+      caloriesLost:"",
+
+      message: "",
+      foodMessage: "",
+      logbookMessage: "",
     }
   },
   created: function () {
-    this.loadLogbook();
-  },
+    },
   methods: {
-    loadLogbook: function(){
-
-    },
-    loadEntry: function(){
-      //
-    },
-    loadFoods: function(){
-
-    },
-    loadLiquids: function(){
-
-    },
-    loadWorkouts: function(){
-
-    },
-    addUserInfo: async function(username, height, targetweight, targetdate, startweight) {
-      this.message = "Backend connection isn't setup yet"
-
-      var params = {
-        username: username,
-        height: height,
-        targetweight: targetweight,
-        targetdate: targetdate,
-        startweight: startweight
-      }
-
+    changeUserInfo: async function(username, height, targetweight, targetdate, startweight) {
       try{
-        let response = await AXIOS.post('/api/user/create/', params);
+        let response = await AXIOS.post('/api/user/create?username=' + username + '&height=' + height + '&targetWeight=' + targetweight+ '&targetDate=' + targetdate + '&startWeight=' + startweight);
         console.log(response);
 
         if (response != null) {
-          this.message = "successfully added entry"
+            console.log("WORKS" + response);
         }
         else {
-          this.message = "error in adding food entry"
+          this.logbookMessage = "error in changing user info"
         }
       }catch(error){
         console.log(error.message);
         this.errorRoute = error.message;
       }
-    }
-
+    },
   }
 }

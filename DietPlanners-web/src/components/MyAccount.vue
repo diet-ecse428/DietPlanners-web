@@ -10,31 +10,31 @@
     <form @submit.prevent="handleSubmit">
             <div class="username">
                 <label for="username">Username</label>
-                <input type="text" onkeypress="this.style.width = ((this.value.length) * 8) + 'px';" v-model="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
+                <input type="text" v-model="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
                 <div v-show="submitted && !username" class="invalid-feedback">Username is required</div>
             </div>
             <div class="height">
                 <label htmlFor="height">Height</label>
-                <input type="height" onkeypress="this.style.width = ((this.value.length ) * 8) + 'px';" v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
+                <input type="height"  v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
                 <div v-show="submitted && !height" class="invalid-feedback">Height is required</div>
             </div>
             <div class="targetweight">
                 <label htmlFor="targetweight">Target Weight</label>
-                <input type="targetweight" onkeypress="this.style.width = ((this.value.length ) * 8) + 'px';" v-model="targetweight" name="targetweight" class="form-control" :class="{ 'is-invalid': submitted && !targetweight }" />
+                <input type="targetweight"  v-model="targetweight" name="targetweight" class="form-control" :class="{ 'is-invalid': submitted && !targetweight }" />
                 <div v-show="submitted && !targetweight" class="invalid-feedback">Target weight is required</div>
             </div>
             <div class="targetdate">
                 <label htmlFor="targetdate">Target Date</label>
-                <input type="targetdate" onkeypress="this.style.width = ((this.value.length ) * 8) + 'px';" v-model="targetdate" name="targetdate" class="form-control" :class="{ 'is-invalid': submitted && !targetdate }" />
+                <input type="targetdate"  v-model="targetdate" name="targetdate" class="form-control" :class="{ 'is-invalid': submitted && !targetdate }" />
                 <div v-show="submitted && !targetdate" class="invalid-feedback">Target date is required</div>
             </div>
             <div class="startweight">
                 <label htmlFor="startweight">Start Weight</label>
-                <input type="startweight" onkeypress="this.style.width = ((this.value.length ) * 8) + 'px';" v-model="startweight" name="startweight" class="form-control" :class="{ 'is-invalid': submitted && !startweight }" />
+                <input type="startweight" v-model="startweight" name="startweight" class="form-control" :class="{ 'is-invalid': submitted && !startweight }" />
                 <div v-show="submitted && !startweight" class="invalid-feedback">Start weight is required</div>
             </div>
             <div class="submit">
-               <button @click="addUserInfo(username, height, targetweight, targetdate, startweight)" name="addButton">Add User Information</button>
+               <button @click="changeUserInfo(username, height, targetweight, targetdate, startweight)" name="addButton">Add User Information</button>
             </div>
       </form>
     </div>
