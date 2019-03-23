@@ -23,16 +23,6 @@
         </ul>
       </div>
     </nav>
-      <!-- <nav>
-    <div class="nav-wrapper">
-      <a href="/" style="font-size:140%" > <img src="./assets/logo2.png" height="300" width="300" ></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="/#/MyAccount">My Account</a> </li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav> -->
 
     <router-view></router-view>
   </div>

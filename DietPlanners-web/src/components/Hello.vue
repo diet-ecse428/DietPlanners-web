@@ -2,7 +2,8 @@
     <div id="home">
   <div class="hello">
       <div class="bg"></div>
-	<br> <br> <br><form action="/#/app">
+	<br> <br> <br>
+  <!-- <form action="/#/app"> -->
   <div class="form-group row">
   <div class="col-xs-6 offset-sm-5 text-center">
     <label for="email" style="font-size:140%">Email address:</label>
@@ -41,7 +42,7 @@
 </div>
 </div>
 </div>
-</form>
+<!-- </form> -->
 
 </div>
 </div>
