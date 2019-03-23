@@ -29,7 +29,7 @@
       <h3>
         Add Progress Entry
       </h3>
-      <input v-model="newDate" placeholder="Date (dd-mm-yyyy)">
+      <input v-model="newDate" placeholder="Date (yyyy-mm-dd)">
       <input v-model="newWeight" placeholder="New Weight">
       <picture-input
         ref="pictureInput"
