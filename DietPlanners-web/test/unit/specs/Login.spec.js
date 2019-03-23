@@ -2,7 +2,6 @@ import Vue from 'vue'
 import { shallow } from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
 import sinon from 'sinon'
-import Counter from './counter'
 import Login from '@/components/Login'
 
 
@@ -54,8 +53,8 @@ describe('Click event', () => {
     const spy = sinon.spy()
     const wrapper = mount(Login, {
       propsData: {
-        username: 'benjamin'
-        password: 'password123'
+        username: 'benjamin',
+        password: 'password123',
         submitted: spy
       }
     })
