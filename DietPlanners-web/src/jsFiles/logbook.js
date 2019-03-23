@@ -234,15 +234,13 @@ export default {
       this.loadFoods();
     },
     addWorkoutToEntry: async function(entryId, caloriesLost, type, duration) {
-      console.log("test");
-      var params ={
-        entryId:entryId,
-        caloriesLost: caloriesLost,
-        type: type,
-        duration:duration
+      if (this.selectedEntryId === null){
+        this.foodMessage = "Please select an entry";
+        return;
       }
+
       try{
-        let response = await AXIOS.post('/api/workout/create', params);
+        let response = await AXIOS.post('/api/workout/create?entryid=' + this.selectedEntryId+ '&caloriesLost=' + this.caloriesLost + '&type=' + this.type + '&duration=' + this.duration);
         console.log(response);
 
         if (response != null) {

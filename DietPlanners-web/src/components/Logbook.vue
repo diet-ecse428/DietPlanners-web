@@ -168,7 +168,7 @@
         <br />
         <input v-model="caloriesLost" placeholder="Calories Burned">
         <br />
-        <button @click="addWorkoutToEntry(12211221,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
+        <button @click="addWorkoutToEntry(selectedEntryId,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
         <br/>
         <p>{{ message }}</p>
       </div>
