@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { EventBus } from './event-bus.js';
 
 var config = require('../../config')
 
@@ -68,8 +69,9 @@ export default {
         console.log(response);
 
         if (response != null) {
-            console.log("WORKS" + response);
-            this.$router.push('/app/myaccount')
+            console.log("WORKS" + username);
+            EventBus.$emit('username', username);
+            this.$router.push('/app/myaccount');
         }
         else {
           this.logbookMessage = "error in registering user"

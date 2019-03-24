@@ -37,8 +37,11 @@
 <div class="container">
 <div class="col-xs-4 col-sm-3 offset-sm-4">
 
-  <button type="submit" style="font-size:120%" class="btn btn-secondary btn-block">Submit</button>
+  <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Submit</button>
 
+</div>
+<div class="col-xs-4 col-sm-3 offset-sm-4">
+  <router-link to="/register"><button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Register</button></router-link>
 </div>
 </div>
 </div>

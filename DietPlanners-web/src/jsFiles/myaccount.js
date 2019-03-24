@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { EventBus } from './event-bus.js';
 
 var config = require('../../config')
 
@@ -56,15 +57,17 @@ export default {
     }
   },
   created: function () {
-    },
+    this.refresh();
+  },
   methods: {
     changeUserInfo: async function(username, height, targetweight, targetdate, startweight) {
       try{
-        let response = await AXIOS.post('/api/user/create?username=' + username + '&height=' + height + '&targetWeight=' + targetweight+ '&targetDate=' + targetdate + '&startWeight=' + startweight);
+        let response = await AXIOS.post('/api/user/userInfo?username=' + username + '&height=' + height + '&targetWeight=' + targetweight+ '&targetDate=' + targetdate + '&startWeight=' + startweight);
         console.log(response);
 
         if (response != null) {
             console.log("WORKS" + response);
+            this.refresh();
         }
         else {
           this.logbookMessage = "error in changing user info"
@@ -74,5 +77,24 @@ export default {
         this.errorRoute = error.message;
       }
     },
+    refresh: async function(){
+      try{
+        EventBus.$on('username', username => {
+          this.username = username.value
+        });
+        console.log("Helllllllllllooooo" + username.value);
+        let response = await AXIOS.get('/api/user/get/' + username.value + '/', {}, {});
+
+        document.getElementById("#username").placeholder = response[0];
+        document.getElementById("#height").placeholder = response[1];
+        document.getElementById("#targetweight").placeholder = response[2];
+        document.getElementById("#targetdate").placeholder = response[3];
+        document.getElementById("#startweight").placeholder = response[4];
+
+      } catch(error) {
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+    }
   }
 }
