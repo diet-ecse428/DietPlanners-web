@@ -2,52 +2,39 @@
   <div id="progress">
     <div class="sidenav">
       <router-link to="/app/myaccount">My Account</router-link>
-      <router-link to="/app/logbook"><b>Logbook</b></router-link>
-      <router-link to="/app/progress" id="progress"><u>Progress</u></router-link>
+      <router-link to="/app/logbook">Logbook</router-link>
+      <router-link to="/app/progress" id="progress"><b><u>Progress</u></b></router-link>
       <router-link to="/" id="logout">Logout</router-link>
     </div>
     <div id="progress">
       <h1>
         Progress
       </h1>
-      <table>
-        <thead>
-        <tr id="header">
-          <th class="th">Date</th>
-          <th class="th">Weight</th>
-          <th class="th">Picture</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(data, index) in progressEntries" :key='index' v-on:click="selectedWeight = data.weight; selectedPicture = data.picture" v-bind:class="{selected: selectedWeight === (data,index)}">
-          <td>{{data.date}}</td>
-          <td>{{data.weight}}</td>
-          <td> <img src="" /> </td>
-        </tr>
-        </tbody>
-      </table>
-      <h3>
+      <h3 style="margin-top:50px;">
         Add Progress Entry
       </h3>
       <input v-model="newDate" placeholder="Date (yyyy-mm-dd)">
       <input v-model="newWeight" placeholder="New Weight">
-      <picture-input
-        ref="pictureInput"
-        :width="400"
-        :removable="true"
-        removeButtonClass="ui red button"
-        :height="400"
-        accept="image/jpeg, image/png, image/gif"
-        buttonClass="ui button primary"
-        :customStrings="{
-        upload: '<h1>Upload it!</h1>',
-        drag: 'Drag and drop your image here'}"></picture-input>
       <br />
       <br />
       <button @click="addEntryToProgress(newWeight, newDate)" name="addButton">Add to Progress</button>
       <br />
       <br />
       <p>{{ progressMessage }}</p>
+      <table>
+        <thead>
+        <tr id="header">
+          <th class="th">Date</th>
+          <th class="th">Weight</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(data, index) in progressEntries" :key='index' v-on:click="selectedWeight = data.weight;" v-bind:class="{selected: selectedWeight === (data,index)}">
+          <td>{{data.date}}</td>
+          <td>{{data.weight}}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 

@@ -53,19 +53,18 @@ export default {
   methods: {
     addEntryToProgress: async function(weight, date) {
       try{
-        const getBase64 = async (file) => {
-          return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsText(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
-          });
-        };
+        // const getBase64 = async (file) => {
+        //   return new Promise((resolve, reject) => {
+        //     const reader = new FileReader();
+        //     reader.readAsDataURL(file);
+        //     reader.onload = () => resolve(reader.result);
+        //     reader.onerror = error => reject(error);
+        //   });
+        // };
 
-        var file = await getBase64(this.$refs.pictureInput.file);
-        console.log(file);
-        var progress = new ProgressDto(1,weight,file,this.staticUsername,date);
-        let response = await AXIOS.post('/api/progress/create/',progress,{ headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}});
+        // var file = await getBase64(this.$refs.pictureInput.file);
+
+        let response = await AXIOS.post('/api/progress/create?username='+this.staticUsername+'&weight='+weight+'&date='+date+'&picture=image');
         console.log(response);
 
         if (response != null) {
