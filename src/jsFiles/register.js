@@ -16,7 +16,7 @@ function userDto(userId){
     this.userId = userId;
 }
 
-function EntryDto(name, last, username, email, password, height, targetweight, targetdate, startweight){
+function UserDTO(name, last, username, email, password, height, targetweight, targetdate, startweight){
   this.name = name;
   this.last = last;
   this.username = username;

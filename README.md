@@ -17,6 +17,9 @@ npm run build
 # build for production and view the bundle analyzer report
 npm run build --report
 
+#download for unit tests
+npm install --save-dev @vue/test-utils
+
 # run unit tests
 npm run unit
 
