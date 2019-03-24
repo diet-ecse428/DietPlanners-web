@@ -1,6 +1,6 @@
 <template>
   <div id="logbook">
-    <div v-if="!entrySelected" id="logbook">
+    <div v-if="!entrySelected" id="logbookEntries">
       <h1>
         LOGBOOK
       </h1>
@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
+            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; selectedEntryDate = data.date ; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
               <td>{{data.entryId}}</td>
               <td>{{data.date}}</td>
               <td>{{data.totalCalCount}}</td>
@@ -50,9 +50,9 @@
       <br/>
       <br/>
       <h1>
-        SELECTED ENTRY
+        Entry of {{selectedEntryDate}}
       </h1>
-      
+
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="foodsSelected = true" name="foodsButton">Foods</button>
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="liquidsSelected = true" name="liquidsButton">Liquids</button>
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="workoutsSelected = true" name="workoutsButton">Workouts</button>

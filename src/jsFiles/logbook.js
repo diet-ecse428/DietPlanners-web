@@ -57,6 +57,7 @@ export default {
       logbookId: 6,
       entrySelected: false,
       selectedEntryId: null,
+      selectedEntryDate: null,
       selectedEntry: null,
       selectedFoodId: null,
       selectedFood: null,
