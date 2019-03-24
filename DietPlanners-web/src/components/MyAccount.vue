@@ -1,36 +1,31 @@
 <template>
   <div class="hello">
-    <div class="sidenav">
-      <router-link to="/app/myaccount"><b><u>My Account</u></b></router-link>
-      <router-link to="/app/logbook">Logbook</router-link>
-      <router-link to="/" id="logout">Logout</router-link>
-    </div>
     <h1>{{ msg }}</h1>
     <div class="account-page">
     <form @submit.prevent="handleSubmit">
             <div class="username">
                 <label for="username">Username</label>
-                <input type="text" v-model="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
+                <input id="username" type="text" v-model="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
                 <div v-show="submitted && !username" class="invalid-feedback">Username is required</div>
             </div>
             <div class="height">
                 <label htmlFor="height">Height</label>
-                <input type="height"  v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
+                <input id="height" type="height"  v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
                 <div v-show="submitted && !height" class="invalid-feedback">Height is required</div>
             </div>
             <div class="targetweight">
                 <label htmlFor="targetweight">Target Weight</label>
-                <input type="targetweight"  v-model="targetweight" name="targetweight" class="form-control" :class="{ 'is-invalid': submitted && !targetweight }" />
+                <input id="targetweight" type="targetweight"  v-model="targetweight" name="targetweight" class="form-control" :class="{ 'is-invalid': submitted && !targetweight }" />
                 <div v-show="submitted && !targetweight" class="invalid-feedback">Target weight is required</div>
             </div>
             <div class="targetdate">
                 <label htmlFor="targetdate">Target Date</label>
-                <input type="targetdate"  v-model="targetdate" name="targetdate" class="form-control" :class="{ 'is-invalid': submitted && !targetdate }" />
+                <input id="targetdate" type="targetdate"  v-model="targetdate" name="targetdate" class="form-control" :class="{ 'is-invalid': submitted && !targetdate }" />
                 <div v-show="submitted && !targetdate" class="invalid-feedback">Target date is required</div>
             </div>
             <div class="startweight">
                 <label htmlFor="startweight">Start Weight</label>
-                <input type="startweight" v-model="startweight" name="startweight" class="form-control" :class="{ 'is-invalid': submitted && !startweight }" />
+                <input id="startweight" type="startweight" v-model="startweight" name="startweight" class="form-control" :class="{ 'is-invalid': submitted && !startweight }" />
                 <div v-show="submitted && !startweight" class="invalid-feedback">Start weight is required</div>
             </div>
             <div class="submit">

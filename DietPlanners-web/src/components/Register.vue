@@ -1,8 +1,5 @@
 <template>
-  <div class="hello">
-    <div id="img" >
-      <img src="@/assets/DietPlanners.png" height="300" width="300"/>
-    </div>
+  <div class="reg">
     <div id="form">
       <form @submit.prevent="handleSubmit">
             <div class="name">
@@ -48,8 +45,21 @@
 </script>
 
 <style>
+
+  .reg {
+    padding: 30px;
+    background: url('../assets/background.png') center/cover;
+
+  }
   #message {
     color: red;
+  }
+
+  #form {
+    margin: 100px;
+  }
+  input {
+    margin: 5px;
   }
 </style>
 

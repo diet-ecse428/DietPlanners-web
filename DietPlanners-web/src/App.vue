@@ -7,7 +7,7 @@
       <div class="navbar" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" style="font-size:140%" href="/#/MyAccount">My Account<span class="sr-only">(current)</span></a>
+            <router-link to="app/myaccount" class="nav-link" style="font-size:140%">My Account<span class="sr-only">(current)</span></router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link offset-sm-2" style="font-size:140%" href="/#/Logbook">Logbook<span class="sr-only">(current)</span></a>
