@@ -118,14 +118,15 @@
           Add Liquid
         </h3>
 
-        <input  placeholder="">
+        <input v-model="newLiquidCalories" placeholder="Calories">
         <br />
-        <input  placeholder="">
+        <input v-model="newLiquidVolume" placeholder="Serving">
         <br />
-
         <br />
-        <button @click="" name="addButton">Add to Entry</button>
+        <button @click="addLiquidToEntry(newLiquidCalories, newLiquidVolume)" name="addButton">Add to Entry</button>
         <br />
+        <br />
+        <p>{{ liquidMessage }}</p>
       </div>
 
       <br/>

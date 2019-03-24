@@ -54,7 +54,7 @@ export default {
   name: 'logbook',
   data () {
     return {
-      logbookId: 1,
+      logbookId: 6,
       selectedEntryId: null,
       selectedEntry: null,
       selectedFoodId: null,
@@ -69,17 +69,24 @@ export default {
       newNote: "",
       newDate: "",
 
+      //new food info
       newFoodCalories: "",
       newFoodServing: "",
       newFoodMealType: "Breakfast",
 
+      //new liquid info
+      newLiquidCalories: "",
+      newLiquidVolume: "",
+
+      //new workout info
       newWorkoutType: "",
       duration: "",
       caloriesLost:"",
 
-      message: "",
       foodMessage: "",
+      liquidMessage:"",
       logbookMessage: "",
+      workoutMessage: "",
     }
   },
   created: function () {
@@ -233,9 +240,31 @@ export default {
       }
       this.loadFoods();
     },
-    addWorkoutToEntry: async function(entryId, caloriesLost, type, duration) {
+    addLiquidToEntry: async function(calories, volume) {
       if (this.selectedEntryId === null){
-        this.foodMessage = "Please select an entry";
+        this.liquidMessage = "Please select an entry";
+        return;
+      }
+
+      try{
+        let response = await AXIOS.post('/api/liquid/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&volume=' + volume );
+        console.log(response);
+
+        if (response != null) {
+          this.liquidMessage = "Successfully added liquid"
+        }
+        else {
+          this.liquidMessage = "error in adding liquid entry"
+        }
+      }catch(error){
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+      this.loadLiquids();
+    },
+    addWorkoutToEntry: async function(entryId, type, duration, caloriesLost) {
+      if (this.selectedEntryId === null){
+        this.workoutMessage = "Please select an entry";
         return;
       }
 
@@ -249,6 +278,7 @@ export default {
         else {
           this.message = "error in adding workout entry"
         }
+        this.loadWorkouts();
       }catch(error){
         console.log(error.message);
         this.errorRoute = error.message;
