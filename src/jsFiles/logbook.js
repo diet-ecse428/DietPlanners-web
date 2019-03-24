@@ -263,6 +263,17 @@ export default {
       }
       this.loadLiquids();
     },
+    selectEntry: function(){
+      if (this.selectedEntryId != null){
+        this.entrySelected = true;
+      }
+    },
+    backToLogbook: function() {
+      this.entrySelected = false;
+      this.selectedEntryId = null;
+      this.selectedEntry= null;
+    },
+
     addWorkoutToEntry: async function(entryId, type, duration, caloriesLost) {
       if (this.selectedEntryId === null){
         this.workoutMessage = "Please select an entry";

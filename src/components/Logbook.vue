@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; entrySelected = true; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
+            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
               <td>{{data.entryId}}</td>
               <td>{{data.date}}</td>
               <td>{{data.totalCalCount}}</td>
@@ -24,6 +24,7 @@
             </tr>
         </tbody>
       </table>
+      <button @click="selectEntry()" name="selectEntryButton">Go to selected entry</button>
       <h3>
         Add Entry
       </h3>
@@ -40,7 +41,7 @@
     </div>
 
     <div v-if="entrySelected" id="entry">
-      <button @click="entrySelected = false" name="addButton">Back to Logbook</button>
+      <button @click="backToLogbook()" name="backButton">Back to Logbook</button>
       <h1>
         SELECTED ENTRY
       </h1>
