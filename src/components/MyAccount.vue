@@ -1,12 +1,5 @@
 <template>
   <div class="hello">
-    <div class="sidenav">
-      <router-link to="/app/myaccount"><b><u>My Account</u></b></router-link>
-      <router-link to="/app/logbook">Logbook</router-link>
-      <router-link to="/app/progress" id="progress">Progress</router-link>
-      <router-link to="/" id="logout">Logout</router-link>
-    </div>
-
     <h1>{{ msg }}</h1>
     <div class="account-page">
     <form @submit.prevent="handleSubmit">

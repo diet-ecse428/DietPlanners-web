@@ -61,7 +61,9 @@ export default {
 
         let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername);
         console.log(response);
-        this.progressMessage = "Successfully added entry to progress!"
+        this.progressMessage = "Successfully added entry to progress!";
+        this.newWeight = "";
+        this.newDate = "";
       }catch(error){
         console.log(error.message);
         this.progressMessage = "The progress entry could not be entered at this time! Please try again later."

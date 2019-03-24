@@ -1,11 +1,5 @@
 <template>
   <div id="progress">
-    <div class="sidenav">
-      <router-link to="/app/myaccount">My Account</router-link>
-      <router-link to="/app/logbook">Logbook</router-link>
-      <router-link to="/app/progress" id="progress"><b><u>Progress</u></b></router-link>
-      <router-link to="/" id="logout">Logout</router-link>
-    </div>
     <div id="progress">
       <h1>
         Progress
