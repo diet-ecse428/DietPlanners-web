@@ -15,10 +15,9 @@ function ProgressDto(id){
   this.id = id;
 }
 
-function ProgressDto(id,weight,picture,username,date){
+function ProgressDto(id,weight,username,date){
   this.id = id;
   this.weight = weight;
-  this.picture = picture;
   this.username = username;
   this.date = date;
 }
@@ -40,7 +39,7 @@ export default {
 
       progressEntries: [],
 
-      staticUsername: 'q'
+      staticUsername: 't'
     }
   },
   created: function () {
@@ -60,7 +59,7 @@ export default {
         // };
         // var file = await getBase64(this.$refs.pictureInput.file);
 
-        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername+'&image=');
+        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername);
         console.log(response);
         this.progressMessage = "Successfully added entry to progress!"
       }catch(error){
@@ -87,7 +86,6 @@ export default {
         for (var i = 0; i < this.response.length; i++) {
           var progressEntry = new ProgressDto(response.data[i].id,
             response.data[i].weight,
-            response.data[i].image,
             response.data[i].userId,
             response.data[i].date);
           this.progressEntries.push(progressEntry);
