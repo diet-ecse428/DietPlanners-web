@@ -32,6 +32,9 @@ export default {
   name: 'register',
   data () {
     return {
+
+      username: "",
+
       logbookId: 1,
       selectedEntryId: null,
       selectedEntry: null,
@@ -69,8 +72,8 @@ export default {
         console.log(response);
 
         if (response != null) {
-            console.log("WORKS" + username);
-            EventBus.$emit('username', username);
+            this.username = username;
+            EventBus.$emit('username', this.username);
             this.$router.push('/app/myaccount');
         }
         else {
