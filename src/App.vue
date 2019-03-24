@@ -10,15 +10,14 @@
             <router-link to="app/myaccount" class="nav-link" style="font-size:140%">My Account<span class="sr-only">(current)</span></router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link offset-sm-2" style="font-size:140%" href="/#/Logbook">Logbook<span class="sr-only">(current)</span></a>
+            <a class="nav-link offset-sm-2" style="font-size:140%" href="/#/app/logbook">Logbook<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link offset-sm-6" style="font-size:140%" href="/#/Progress">Progress<span class="sr-only">(current)</span></a>
+            <a class="nav-link offset-sm-6" style="font-size:140%" href="/#/app/progress">Progress<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link offset-sm-10" style="font-size:140%" href="/#/Logout">Logout<span class="sr-only">(current)</span></a>
+            <a class="nav-link offset-sm-10" style="font-size:140%" href="/#/login">Logout<span class="sr-only">(current)</span></a>
           </li>
-          
 
         </ul>
       </div>
