@@ -1,6 +1,6 @@
 <template>
   <div id="logbook">
-    <div id="logbook">
+    <div v-if="!entrySelected" id="logbookEntries">
       <h1>
         LOGBOOK
       </h1>
@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
+            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; selectedEntryDate = data.date ; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
               <td>{{data.entryId}}</td>
               <td>{{data.date}}</td>
               <td>{{data.totalCalCount}}</td>
@@ -24,6 +24,10 @@
             </tr>
         </tbody>
       </table>
+      <button @click="selectEntry()" name="selectEntryButton">Go to selected entry</button>
+      <br />
+      <br />
+      <br />
       <h3>
         Add Entry
       </h3>
@@ -38,14 +42,25 @@
       <br />
       <p>{{ logbookMessage }}</p>
     </div>
-    <div id="entry">
+
+    <div v-if="entrySelected" id="entry">
+      <button @click="backToLogbook()" name="backButton">Back to Logbook</button>
+      <br/>
+      <button v-if="foodsSelected || liquidsSelected || workoutsSelected" @click="backToEntry()" name="backButtonEntry">Back to Entry</button>
+      <br/>
+      <br/>
       <h1>
-        SELECTED ENTRY
+        Entry of {{selectedEntryDate}}
       </h1>
+
+      <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="foodsSelected = true" name="foodsButton">Foods</button>
+      <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="liquidsSelected = true" name="liquidsButton">Liquids</button>
+      <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="workoutsSelected = true" name="workoutsButton">Workouts</button>
+
+      <div v-if="foodsSelected" id="foods">
       <h2>
         Foods
       </h2>
-      <div class="foods">
         <table >
           <thead>
             <tr id="header">
@@ -90,86 +105,86 @@
         </div>
       </div>
       <br/>
+      <div v-if="liquidsSelected" id="liquids">
+        <h2>
+          Liquids
+        </h2>
+        <table >
+          <thead>
+          <tr id="header">
+            <th class="th">Id</th>
+            <th class="th">Calories</th>
+            <th class="th">Volume</th>
 
-      <h2>
-        Liquids
-      </h2>
-      <table >
-        <thead>
-        <tr id="header">
-          <th class="th">Id</th>
-          <th class="th">Calories</th>
-          <th class="th">Volume</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(data, index) in liquids" :key='index'>
+            <td>{{data.id}}</td>
+            <td>{{data.calories}}</td>
+            <td>{{data.volume}}</td>
+          </tr>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(data, index) in liquids" :key='index'>
-          <td>{{data.id}}</td>
-          <td>{{data.calories}}</td>
-          <td>{{data.volume}}</td>
-        </tr>
+          </tbody>
 
-        </tbody>
+        </table>
+        <div id="newliquid">
+          <h3>
+            Add Liquid
+          </h3>
 
-      </table>
-      <div id="newliquid">
-        <h3>
-          Add Liquid
-        </h3>
-
-        <input  placeholder="">
-        <br />
-        <input  placeholder="">
-        <br />
-
-        <br />
-        <button @click="" name="addButton">Add to Entry</button>
-        <br />
+          <input v-model="newLiquidCalories" placeholder="Calories">
+          <br />
+          <input v-model="newLiquidVolume" placeholder="Serving">
+          <br />
+          <br />
+          <button @click="addLiquidToEntry(newLiquidCalories, newLiquidVolume)" name="addButton">Add to Entry</button>
+          <br />
+          <br />
+          <p>{{ liquidMessage }}</p>
+        </div>
       </div>
-
       <br/>
-
-      <h2>
-        Workouts
-      </h2>
-      <table >
-        <thead>
-        <tr id="header">
-          <th class="th">Type</th>
-          <th class="th">Duration</th>
-          <th class="th">Calories Lost</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(data, index) in workouts" :key='index'>
-          <td>{{data.type}}</td>
-          <td>{{data.duration}}</td>
-          <td>{{data.caloriesLost}}</td>
-        </tr>
-        </tbody>
-      </table>
-      <div id="newworkout">
-        <h3>
-          Add Workout
-        </h3>
-        <select v-model="newWorkoutType" >
-          <option value="" disabled hidden> Workout Type</option>
-          <option value="cardio">Cardio</option>
-          <option value="strength training">Strength Training</option>
-        </select>
-        <br/>
-        <input v-model="duration" placeholder="Duration (minutes)">
-        <br />
-        <input v-model="caloriesLost" placeholder="Calories Burned">
-        <br />
-        <button @click="addWorkoutToEntry(selectedEntryId,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
-        <br/>
-        <p>{{ message }}</p>
+      <div v-if="workoutsSelected" id="workouts">
+        <h2>
+          Workouts
+        </h2>
+        <table >
+          <thead>
+          <tr id="header">
+            <th class="th">Type</th>
+            <th class="th">Duration</th>
+            <th class="th">Calories Lost</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="(data, index) in workouts" :key='index'>
+            <td>{{data.type}}</td>
+            <td>{{data.duration}}</td>
+            <td>{{data.caloriesLost}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div id="newworkout">
+          <h3>
+            Add Workout
+          </h3>
+          <select v-model="newWorkoutType" >
+            <option value="" disabled hidden> Workout Type</option>
+            <option value="cardio">Cardio</option>
+            <option value="strength training">Strength Training</option>
+          </select>
+          <br/>
+          <input v-model="duration" placeholder="Duration (minutes)">
+          <br />
+          <input v-model="caloriesLost" placeholder="Calories Burned">
+          <br />
+          <button @click="addWorkoutToEntry(selectedEntryId,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
+          <br/>
+          <p>{{ message }}</p>
       </div>
-
+      </div>
     </div>
-
   </div>
 
 </template>
