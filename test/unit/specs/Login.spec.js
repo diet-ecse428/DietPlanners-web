@@ -31,7 +31,7 @@ describe('Login', () => {
     const psswrd= 'pass'
     const wrapper = shallow(Login,{
       username: { psswrd }
-    })
+    });
 
 
     expect(wrapper.find('.error').exists()).toBeTruthy()
