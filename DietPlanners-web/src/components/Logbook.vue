@@ -3,6 +3,7 @@
     <div class="sidenav">
       <router-link to="/app/myaccount">My Account</router-link>
       <router-link to="/app/logbook"><b><u>Logbook</u></b></router-link>
+      <router-link to="/app/progress" id="progress">Progress</router-link>
       <router-link to="/" id="logout">Logout</router-link>
     </div>
     <div id="logbook">
