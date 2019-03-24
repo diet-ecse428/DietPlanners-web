@@ -83,6 +83,6 @@ export default {
         console.log(error.message);
         this.errorRoute = error.message;
       }
-    },
+    }
   }
 }

@@ -6,8 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
+    "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "start": "node server.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e"
@@ -19,7 +19,6 @@
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
     "vue-hot-reload-api": "^2.3.3",
-    "vue-picture-input": "^2.1.6",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
@@ -69,10 +68,10 @@
     "shelljs": "^0.7.6",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.8.0",
+    "uglifyjs-webpack-plugin": "^2.1.2",
     "url-loader": "^0.5.8",
     "vue-loader": "^13.0.4",
     "vue-style-loader": "^3.0.1",
-    "uglify-js": "^3.4.3",
     "vue-template-compiler": "^2.4.2",
     "webpack": "^2.6.1",
     "webpack-bundle-analyzer": "^2.2.1",
