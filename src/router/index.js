@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
-import Login from '@/components/Login'
-import Register from '@/components/Register'
-import Logbook from '@/components/Logbook'
-import MyAccount from '@/components/MyAccount'
-import Progress from '@/components/Progress'
+import Hello from '@/components/Hello.vue'
+import Login from '@/components/Login.vue'
+import Register from '@/components/Register.vue'
+import Logbook from '@/components/Logbook.vue'
+import MyAccount from '@/components/MyAccount.vue'
+import Progress from '@/components/Progress.vue'
 
 
 Vue.use(Router)
