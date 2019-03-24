@@ -41,7 +41,7 @@ export default {
 
       progressEntries: [],
 
-      staticUsername: 'kamy'
+      staticUsername: 'zurg'
     }
   },
   components: {
@@ -53,6 +53,7 @@ export default {
   methods: {
     addEntryToProgress: async function(weight, date) {
       try{
+
         // const getBase64 = async (file) => {
         //   return new Promise((resolve, reject) => {
         //     const reader = new FileReader();
@@ -61,20 +62,14 @@ export default {
         //     reader.onerror = error => reject(error);
         //   });
         // };
-
         // var file = await getBase64(this.$refs.pictureInput.file);
 
-        let response = await AXIOS.post('/api/progress/create?username='+this.staticUsername+'&weight='+weight+'&date='+date+'&picture=image');
+        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername+'&image=image');
         console.log(response);
-
-        if (response != null) {
-          this.progressMessage = "Successfully added entry to progress "
-        }
-        else {
-          this.progressMessage = "error in adding entry to progress"
-        }
+        this.progressMessage = "Successfully added entry to progress!"
       }catch(error){
         console.log(error.message);
+        this.progressMessage = "The progress entry could not be entered at this time! Please try again later."
         this.errorRoute = error.message;
       }
       this.loadProgress();
@@ -91,7 +86,7 @@ export default {
     loadProgress: async function(){
       try{
         this.progressEntries = [];
-        let response = await AXIOS.get('api/progress/getAllEntries/kamy/', {}, {});
+        let response = await AXIOS.get('api/progress/getAllEntries/'+this.staticUsername, {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var progressEntry = new ProgressDto(response.data[i].id,
