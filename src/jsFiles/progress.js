@@ -81,7 +81,7 @@ export default {
     loadProgress: async function(){
       try{
         this.progressEntries = [];
-        let response = await AXIOS.get('api/progress/getAllEntries/'+this.staticUsername, {}, {});
+        let response = await AXIOS.get('api/progress/getAllProgresses/'+this.staticUsername, {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var progressEntry = new ProgressDto(response.data[i].id,
