@@ -61,6 +61,10 @@ export default {
       selectedFoodId: null,
       selectedFood: null,
 
+      foodsSelected: false,
+      liquidsSelected: false,
+      workoutsSelected: false,
+
       entries: [],
       foods: [],
       workouts: [],
@@ -272,9 +276,15 @@ export default {
       }
     },
     backToLogbook: function() {
+      this.backToEntry();
       this.entrySelected = false;
       this.selectedEntryId = null;
       this.selectedEntry= null;
+    },
+    backToEntry: function() {
+      this.foodsSelected = false;
+      this.liquidsSelected = false;
+      this.workoutsSelected = false;
     },
 
     addWorkoutToEntry: async function(entryId, type, duration, caloriesLost) {
