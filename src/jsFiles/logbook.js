@@ -55,6 +55,7 @@ export default {
   data () {
     return {
       logbookId: 6,
+      entrySelected: false,
       selectedEntryId: null,
       selectedEntry: null,
       selectedFoodId: null,
