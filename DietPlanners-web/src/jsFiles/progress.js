@@ -60,7 +60,7 @@ export default {
         // };
         // var file = await getBase64(this.$refs.pictureInput.file);
 
-        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername+'&image=image');
+        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername+'&image=');
         console.log(response);
         this.progressMessage = "Successfully added entry to progress!"
       }catch(error){
