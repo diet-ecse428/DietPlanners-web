@@ -25,6 +25,9 @@
         </tbody>
       </table>
       <button @click="selectEntry()" name="selectEntryButton">Go to selected entry</button>
+      <br />
+      <br />
+      <br />
       <h3>
         Add Entry
       </h3>

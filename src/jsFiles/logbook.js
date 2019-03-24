@@ -266,6 +266,9 @@ export default {
     selectEntry: function(){
       if (this.selectedEntryId != null){
         this.entrySelected = true;
+        this.logbookMessage = "";
+      } else {
+        this.logbookMessage = "Please select an entry";
       }
     },
     backToLogbook: function() {
