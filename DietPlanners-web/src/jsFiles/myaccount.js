@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { EventBus } from './event-bus.js';
 
 var config = require('../../config')
 
@@ -11,80 +12,89 @@ var AXIOS = axios.create({
 })
 
 // Objects
-function LogbookDto(){
+function userDto(userId){
+    this.userId = userId;
 }
 
-function EntryDto(){
+function EntryDto(username, height, targetweight, targetdate, startweight){
+  this.username = username;
+  this.height = height;
+  this.targetweight = targetweight;
+  this.targetdate = targetdate;
+  this.startweight = startweight;
 }
-
-
-function foodDto(){
-}
-
 
 export default {
-  name: 'login',
+  name: 'register',
   data () {
     return {
-      logbookId: null,
+      logbookId: 1,
       selectedEntryId: null,
+      selectedEntry: null,
+      selectedFoodId: null,
+      selectedFood: null,
 
       entries: [],
       foods: [],
       workouts: [],
       liquids: [],
 
+      newTotalCalCount: "",
+      newNote: "",
+      newDate: "",
+
       newFoodCalories: "",
       newFoodServing: "",
       newFoodMealType: "Breakfast",
-      message: ""
+
+      newWorkoutType: "",
+      duration: "",
+      caloriesLost:"",
+
+      message: "",
+      foodMessage: "",
+      logbookMessage: "",
     }
   },
   created: function () {
-    this.loadLogbook();
+    this.refresh();
   },
   methods: {
-    loadLogbook: function(){
-
-    },
-    loadEntry: function(){
-      //
-    },
-    loadFoods: function(){
-
-    },
-    loadLiquids: function(){
-
-    },
-    loadWorkouts: function(){
-
-    },
-    addUserInfo: async function(username, height, targetweight, targetdate, startweight) {
-      this.message = "Backend connection isn't setup yet"
-
-      var params = {
-        username: username,
-        height: height,
-        targetweight: targetweight,
-        targetdate: targetdate,
-        startweight: startweight
-      }
-
+    changeUserInfo: async function(username, height, targetweight, targetdate, startweight) {
       try{
-        let response = await AXIOS.post('/api/user/create/', params);
+        let response = await AXIOS.post('/api/user/userInfo?username=' + username + '&height=' + height + '&targetWeight=' + targetweight+ '&targetDate=' + targetdate + '&startWeight=' + startweight);
         console.log(response);
 
         if (response != null) {
-          this.message = "successfully added entry"
+            console.log("WORKS" + response);
+            this.refresh();
         }
         else {
-          this.message = "error in adding food entry"
+          this.logbookMessage = "error in changing user info"
         }
       }catch(error){
         console.log(error.message);
         this.errorRoute = error.message;
       }
-    }
+    },
+    refresh: async function(){
+      try{
+        EventBus.$on('username', username => {
+          this.username = username.value
+        });
+        console.log("Helllllllllllooooo" + username.value);
+        let response = await AXIOS.get('/api/user/get/' + username.value + '/', {}, {});
 
+        document.getElementById("#username").placeholder = response[0];
+        document.getElementById("#height").placeholder = response[1];
+        document.getElementById("#targetweight").placeholder = response[2];
+        document.getElementById("#targetdate").placeholder = response[3];
+        document.getElementById("#startweight").placeholder = response[4];
+
+      } catch(error) {
+        console.log(error.message);
+        this.errorRoute = error.message;
+      }
+    }
   }
 }
