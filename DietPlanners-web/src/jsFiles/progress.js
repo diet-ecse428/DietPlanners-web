@@ -40,11 +40,8 @@ export default {
 
       progressEntries: [],
 
-      staticUsername: 'zurg'
+      staticUsername: 'q'
     }
-  },
-  components: {
-    PictureInput
   },
   created: function () {
     this.refresh();
