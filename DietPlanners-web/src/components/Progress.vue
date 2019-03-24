@@ -20,7 +20,7 @@
       <button @click="addEntryToProgress(newWeight, newDate)" name="addButton">Add to Progress</button>
       <br />
       <br />
-      <p>{{ progressMessage }}</p>
+      <p>{{progressMessage}}</p>
       <table>
         <thead>
         <tr id="header">
