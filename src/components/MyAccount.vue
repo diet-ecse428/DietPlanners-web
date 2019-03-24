@@ -36,16 +36,16 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'My account page'
-    }
-  }
-}
-</script>
+<!--<script>-->
+<!--export default {-->
+  <!--name: 'hello',-->
+  <!--data () {-->
+    <!--return {-->
+      <!--msg: 'My account page'-->
+    <!--}-->
+  <!--}-->
+<!--}-->
+<!--</script>-->
 
 <script src="../jsFiles/myaccount.js">
 </script>

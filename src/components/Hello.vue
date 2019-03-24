@@ -6,20 +6,14 @@
   <!-- <form action="/#/app"> -->
   <div class="form-group row">
   <div class="col-xs-6 offset-sm-5 text-center">
-    <label for="email" style="font-size:140%">Email address:</label>
-    <input required type="email" class="form-control" id="email" placeholder="Email">
-      <div class="valid-feedback">
-        Looks good!>
-      </div>
-<div class="invalid-feedback">
-        Please provide a valid email.
-      </div>
+    <label for="username" style="font-size:140%">Username:</label>
+    <input required type="text" class="form-control" id="username" placeholder="Username" v-model="username">
   </div>
   </div>
   <div class="form-group row">
 <div class="col-xs-6 offset-sm-5 text-center">
     <label for="pwd" style="font-size:140%" >Password:</label>
-    <input required type="password" class="form-control" id="pwd" placeholder="Password">
+    <input required type="password" class="form-control" id="pwd" placeholder="Password" v-model="password">
 <div class="valid-feedback">
         Looks good!>
       </div>
@@ -37,12 +31,13 @@
 <div class="container">
 <div class="col-xs-4 col-sm-3 offset-sm-4">
 
-  <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Submit</button>
+  <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block" v-on:click="login(username,password)">Submit</button>
 
 </div>
 <div class="col-xs-4 col-sm-3 offset-sm-4">
   <router-link to="/register"><button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Register</button></router-link>
 </div>
+    {{errorMessage}}
 </div>
 </div>
 <!-- </form> -->
@@ -63,15 +58,7 @@
   </div>-->
 </template>
 
-<script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Diet Planners'
-    }
-  }
-}
+<script src="../jsFiles/hello.js">
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
