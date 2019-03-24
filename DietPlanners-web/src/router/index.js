@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Logbook from '@/components/Logbook'
 import MyAccount from '@/components/MyAccount'
+import Progress from '@/components/Progress'
 
 
 Vue.use(Router)
@@ -35,6 +36,11 @@ export default new Router({
       path: '/app/myaccount',
       name: 'MyAccount',
       component: MyAccount
+    },
+    {
+      path: '/app/progress',
+      name: 'Progress',
+      component: Progress
     }
   ]
 })

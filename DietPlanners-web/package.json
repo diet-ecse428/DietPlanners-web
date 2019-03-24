@@ -19,6 +19,7 @@
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
     "vue-hot-reload-api": "^2.3.3",
+    "vue-picture-input": "^2.1.6",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
