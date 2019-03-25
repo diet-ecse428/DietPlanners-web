@@ -43,6 +43,10 @@ export default {
     }
   },
   created: function () {
+    if (localStorage.getItem('user') == null) {
+      this.$router.push('/');
+      window.alert('Please Log In');
+    }
     this.refresh();
   },
   methods: {

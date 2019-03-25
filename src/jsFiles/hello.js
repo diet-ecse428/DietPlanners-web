@@ -34,6 +34,7 @@ export default {
         }
     },
     created: function () {
+      localStorage.clear();
     },
     methods: {
         login: async function (username,password) {
@@ -50,7 +51,8 @@ export default {
                         height: user.height,
                         targetWeight: user.targetWeight,
                         targetDate: user.targetDate,
-                        startWeight: user.startWeight
+                        startWeight: user.startWeight,
+                        logbook: user.logbook,
                     };
                     localStorage.setItem('user',JSON.stringify(storedUser));
                     this.$router.push('/app/myaccount');
