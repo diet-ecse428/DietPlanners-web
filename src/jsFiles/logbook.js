@@ -89,10 +89,8 @@ export default {
       duration: "",
       caloriesLost:"",
 
-      foodMessage: "",
-      liquidMessage:"",
-      logbookMessage: "",
-      workoutMessage: "",
+      message: "",
+
     }
   },
   created: function () {
@@ -109,14 +107,14 @@ export default {
         console.log(response);
 
         if (response != null) {
-          this.logbookMessage = "Successfully added entry to logbook "
+          this.message = "Successfully added entry to logbook "
         }
         else {
-          this.logbookMessage = "error in adding entry to logbook"
+          this.message = "error in adding entry to logbook"
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.message = error.message;
       }
       this.loadLogbook();
     },
@@ -149,7 +147,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.logbookMessage = error.message;
+        this.message = error.message;
       }
     },
     loadEntry: function(){
@@ -173,7 +171,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.foodMessage = error.message;
+        this.message = error.message;
       }
     },
     loadLiquids: async function(){
@@ -190,7 +188,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.liquidMessage = error.message;
+        this.message = error.message;
       }
     },
     loadWorkouts: async function(){
@@ -208,12 +206,12 @@ export default {
         }
         }catch(error){
           console.log(error.message);
-          this.workoutMessage = error.message;
+          this.message = error.message;
         }
     },
     addFoodToEntry: async function(calories, serving, mealType) {
       if (this.selectedEntryId === null){
-        this.foodMessage = "Please select an entry";
+        this.message = "Please select an entry";
         return;
       }
 
@@ -222,41 +220,41 @@ export default {
         console.log(response);
 
         if (response != null) {
-          this.foodMessage = "Successfully added food "
+          this.message = "Successfully added food "
         }
         else {
-          this.foodMessage = "error in adding food entry"
+          this.message = "error in adding food entry"
         }
       }catch(error){
         console.log(error.message);
-        this.foodMessage = error.message;
+        this.message = error.message;
       }
       this.loadFoods();
     },
     deleteFood: async function() {
       try{
         if (this.selectedFoodId === null){
-          this.foodMessage = "Please select a food";
+          this.message = "Please select a food";
           return;
         }
         let response = await AXIOS.post('/api/food/remove/'+ this.selectedFoodId+'/', {}, {});
         console.log(response);
 
         if (response != null) {
-          this.foodMessage = "Successfully deleted food"
+          this.message = "Successfully deleted food"
         }
         else {
-          this.foodMessage = "error in deleting food"
+          this.message = "error in deleting food"
         }
       }catch(error){
         console.log(error.message);
-        this.foodMessage = error.message;
+        this.message = error.message;
       }
       this.loadFoods();
     },
     addLiquidToEntry: async function(calories, volume) {
       if (this.selectedEntryId === null){
-        this.liquidMessage = "Please select an entry";
+        this.message = "Please select an entry";
         return;
       }
 
@@ -265,32 +263,34 @@ export default {
         console.log(response);
 
         if (response != null) {
-          this.liquidMessage = "Successfully added liquid"
+          this.message = "Successfully added liquid"
         }
         else {
-          this.liquidMessage = "error in adding liquid entry"
+          this.message = "error in adding liquid entry"
         }
       }catch(error){
         console.log(error.message);
-        this.liquidMessage = error.message;
+        this.message = error.message;
       }
       this.loadLiquids();
     },
     selectEntry: function(){
       if (this.selectedEntryId != null){
         this.entrySelected = true;
-        this.logbookMessage = "";
+        this.message = "";
       } else {
-        this.logbookMessage = "Please select an entry";
+        this.message = "Please select an entry";
       }
     },
     backToLogbook: function() {
+      this.message= "";
       this.backToEntry();
       this.entrySelected = false;
       this.selectedEntryId = null;
       this.selectedEntry= null;
     },
     backToEntry: function() {
+      this.message = "";
       this.foodsSelected = false;
       this.liquidsSelected = false;
       this.workoutsSelected = false;
@@ -298,7 +298,7 @@ export default {
 
     addWorkoutToEntry: async function(entryId, type, duration, caloriesLost) {
       if (this.selectedEntryId === null){
-        this.workoutMessage = "Please select an entry";
+        this.message = "Please select an entry";
         return;
       }
 
@@ -315,7 +315,7 @@ export default {
         this.loadWorkouts();
       }catch(error){
         console.log(error.message);
-        this.workoutMessage = error.message;
+        this.message = error.message;
       }
     }
   }

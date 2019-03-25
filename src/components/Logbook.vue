@@ -40,7 +40,6 @@
       <button @click="addEntryToLogbook(newTotalCalCount, newNote, newDate)" name="addButton">Add to Logbook</button>
       <br />
       <br />
-      <p>{{ logbookMessage }}</p>
     </div>
 
     <div v-if="entrySelected" id="entry">
@@ -101,7 +100,6 @@
           <button @click="deleteFood(selectedFoodId)" name="addButton">Delete Selected Food</button>
           <br />
           <br />
-          <p>{{ foodMessage }}</p>
         </div>
       </div>
       <br/>
@@ -141,7 +139,6 @@
           <button @click="addLiquidToEntry(newLiquidCalories, newLiquidVolume)" name="addButton">Add to Entry</button>
           <br />
           <br />
-          <p>{{ liquidMessage }}</p>
         </div>
       </div>
       <br/>
@@ -181,10 +178,10 @@
           <br />
           <button @click="addWorkoutToEntry(selectedEntryId,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
           <br/>
-          <p>{{ message }}</p>
       </div>
       </div>
     </div>
+    <p>{{ message }}</p>
   </div>
 
 </template>

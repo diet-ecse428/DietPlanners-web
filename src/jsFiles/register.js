@@ -35,32 +35,6 @@ export default {
 
       username: "",
 
-      logbookId: 1,
-      selectedEntryId: null,
-      selectedEntry: null,
-      selectedFoodId: null,
-      selectedFood: null,
-
-      entries: [],
-      foods: [],
-      workouts: [],
-      liquids: [],
-
-      newTotalCalCount: "",
-      newNote: "",
-      newDate: "",
-
-      newFoodCalories: "",
-      newFoodServing: "",
-      newFoodMealType: "Breakfast",
-
-      newWorkoutType: "",
-      duration: "",
-      caloriesLost:"",
-
-      message: "",
-      foodMessage: "",
-      logbookMessage: "",
     }
   },
   created: function () {
