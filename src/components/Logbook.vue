@@ -60,7 +60,9 @@
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="foodsSelected = true" name="foodsButton">Foods</button>
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="liquidsSelected = true" name="liquidsButton">Liquids</button>
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="workoutsSelected = true" name="workoutsButton">Workouts</button>
-
+      <!--<div>-->
+        <!--<h2>test header</h2>-->
+      <!--</div>-->
       <div v-if="foodsSelected" id="foods">
       <h2>
         Foods
@@ -171,11 +173,12 @@
           <h3>
             Add Workout
           </h3>
-          <select v-model="newWorkoutType" >
-            <option value="" disabled hidden> Workout Type</option>
-            <option value="cardio">Cardio</option>
-            <option value="strength training">Strength Training</option>
-          </select>
+          <!--<input v-model="newWorkoutType" placeholder="HELLO??">-->
+          <select v-model="newWorkoutType"  >
+          <option value="" disabled hidden> Workout Type</option>
+          <option value="cardio">Cardio</option>
+          <option value="strength training">Strength Training</option>
+        </select>
           <br/>
           <input v-model="duration" placeholder="Duration (minutes)">
           <br />
@@ -257,7 +260,7 @@
     background-color: lightskyblue;
   }
   .foods {
-    display: ;
+    display:;
   }
 
   .backButton {
