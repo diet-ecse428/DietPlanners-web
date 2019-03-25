@@ -38,8 +38,9 @@ export default {
     methods: {
         login: async function (username,password) {
             try {
-                var user = await AXIOS.get('/api/user/login?username='+username+'&password='+password);
-                if(user != null) {
+              var user = await AXIOS.get('/api/user/login/'+username+'/'+password);
+              var user = user.data;
+              if(user != "") {
                     console.log(user);
                     var storedUser = {
                         name: user.name,
@@ -51,14 +52,12 @@ export default {
                         targetDate: user.targetDate,
                         startWeight: user.startWeight
                     };
-                    console.log(storedUser);
-                    console.log(JSON.stringify(storedUser));
                     localStorage.setItem('user',JSON.stringify(storedUser));
                     this.$router.push('/app/myaccount');
-                    console.log(JSON.parse(localStorage.getItem('user')));
-                }
-            } catch(err){
+                } else {
                 this.errorMessage = 'There was an error while attempting to log you in. Make sure you\'re credentials are correct or try again later!';
+              }
+            } catch(err){
             }
         }
     }

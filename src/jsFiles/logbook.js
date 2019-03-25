@@ -129,7 +129,9 @@ export default {
       try{
         this.entries = [];
         let response = await AXIOS.get('/api/entry/getAllEntries/' + this.logbookId+ '/', {}, {});
+        console.log(response);
         this.response = response.data;
+        console.log(this.response);
         for (var i = 0; i < this.response.length; i++) {
           var entry = new EntryDto(response.data[i].date,
                                    response.data[i].remainingCal,

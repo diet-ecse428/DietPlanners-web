@@ -32,6 +32,10 @@ export default {
     return {
 
       username: "",
+      height: "",
+      targetWeight: "",
+      targetDate: "",
+      startWeight: "",
 
       logbookId: 1,
       selectedEntryId: null,
@@ -64,52 +68,73 @@ export default {
       heightText: "",
       twText: "",
       tdText: "",
-      swText: ""
+      swText: "",
+
+      submitted: false
     }
   }, beforeMount() {
     console.log("mount");
-    this.refresh()
+    this.refreshAccount();
   },
   created: function () {
-    this.refresh();
+    this.refreshAccount();
   },
   methods: {
-    changeUserInfo: async function(username, height, targetweight, targetdate, startweight) {
+    changeUserInfo: async function() {
       try{
-        let response = await AXIOS.post('/api/user/userInfo?username=' + username + '&height=' + height + '&targetWeight=' + targetweight+ '&targetDate=' + targetdate + '&startWeight=' + startweight);
-
-        if (response != null) {
-            this.username = username
-            EventBus.$emit('username', this.username);
-            console.log("WORKS" + response);
-            this.refresh();
+        var user = JSON.parse(localStorage.getItem('user'));
+        console.log(user.username);
+        let response = await AXIOS.post('/api/user/userInfo/'+ user.username + '/' + height.value + '/' + targetWeight.value+ '/' + targetDate.value + '/' + startWeight.value);
+        console.log(response);
+        if (response.data != "") {
+            this.refreshAccount();
+            this.message = '';
         }
         else {
           this.logbookMessage = "error in changing user info"
         }
       }catch(error){
-        console.log(error.message);
-        this.errorRoute = error.message;
+        this.message = 'You\'re account information could not be updated at this time!';
       }
     },
-    refresh: async function(){
+    refreshAccount: async function(){
       try{
-        EventBus.$on('username', username => {
-          this.username = username.value;
-        });
-          
-          let response = await AXIOS.get('/api/user/get/' + username.value + '/', {}, {});
-          console.log(response + "hello")
-          console.log(response.data.name)
-          this.usernameText = response.data.username;
-          this.heightText = response.data.height;
-          this.twText = response.data.targetWeight;
-          this.tdText = response.data.targetDate;
-          this.swText = response.data.startWeight;
+          console.log('REFRESH!!');
+          var user = JSON.parse(localStorage.getItem('user'));
+          this.usernameText = user.username;
+
+          let response = await AXIOS.get('/api/user/get/' + user.username + '/', {}, {});
+
+          var updatedUser = response.data;
+          console.log(updatedUser);
+
+        var storedUser = {
+          name: updatedUser.name,
+          lastName: updatedUser.lastName,
+          email: updatedUser.email,
+          username: updatedUser.username,
+          height: updatedUser.height,
+          targetWeight: updatedUser.targetWeight,
+          targetDate: updatedUser.targetDate,
+          startWeight: updatedUser.startWeight
+        };
+
+          localStorage.setItem('user',JSON.stringify(storedUser));
+
+          this.heightText = updatedUser.height;
+          this.twText = updatedUser.targetWeight;
+          this.tdText = updatedUser.targetDate;
+          this.swText = updatedUser.startWeight;
+
+          this.height = '';
+          this.targetDate = '';
+          this.targetWeight = '';
+          this.startWeight = '';
 
       } catch(error) {
         console.log(error.message);
         this.errorRoute = error.message;
+        this.message = 'You\'re account information could not be updated at this time!'
       }
     }
   }

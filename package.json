@@ -18,12 +18,7 @@
     "bootstrap-vue": "latest",
     "popper.js": "^1.12.9",
     "vue": "^2.5.2",
-<<<<<<< HEAD
     "vue-hot-reload-api": "^2.3.3",
-    "vue-localstorage": "^0.6.2",
-    "vue-picture-input": "^2.1.6",
-=======
->>>>>>> d07dd6cfe7908d05a69cc3569e949e3b065fada0
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

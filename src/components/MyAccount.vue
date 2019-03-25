@@ -1,38 +1,36 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <div class="account-page">
-    <form @submit.prevent="handleSubmit">
+    <form @submit.prevent="changeUserInfo">
             <div class="username">
-                <label for="username">Username: </label><p>{{usernameText}}</p>
-                <input placeholder="" id="username" type="text" v-model="username" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
-                <div v-show="submitted && !username" class="invalid-feedback">Username is required</div>
+                <label>Username: </label><p>{{usernameText}}</p>
             </div>
             <div class="height">
                 <label htmlFor="height">Height: {{heightText}} </label>
                 <input placeholder="" id="height" type="height"  v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
                 <div v-show="submitted && !height" class="invalid-feedback">Height is required</div>
             </div>
-            <div class="targetweight">
-                <label htmlFor="targetweight">Target Weight: {{twText}} </label>
-                <input placeholder="" id="targetweight" type="targetweight"  v-model="targetweight" name="targetweight" class="form-control" :class="{ 'is-invalid': submitted && !targetweight }" />
+            <div class="targetWeight">
+                <label htmlFor="targetWeight">Target Weight: {{twText}} </label>
+                <input placeholder="" id="targetWeight" type="targetWeight"  v-model="targetWeight" name="targetWeight" class="form-control" :class="{ 'is-invalid': submitted && !targetWeight }" />
                 <div v-show="submitted && !targetweight" class="invalid-feedback">Target weight is required</div>
             </div>
-            <div class="targetdate">
-                <label htmlFor="targetdate">Target Date: {{tdText}}</label>
-                <input placeholder="" id="targetdate" type="targetdate"  v-model="targetdate" name="targetdate" class="form-control" :class="{ 'is-invalid': submitted && !targetdate }" />
-                <div v-show="submitted && !targetdate" class="invalid-feedback">Target date is required</div>
+            <div class="targetDate">
+                <label htmlFor="targetDate">Target Date: {{tdText}}</label>
+                <input placeholder="" id="targetDate" type="targetDate"  v-model="targetDate" name="targetDate" class="form-control" :class="{ 'is-invalid': submitted && !targetDate }" />
+                <div v-show="submitted && !targetDate" class="invalid-feedback">Target date is required</div>
             </div>
-            <div class="startweight">
-                <label htmlFor="startweight">Start Weight: {{swText}}</label>
-                <input placeholder="" id="startweight" type="startweight" v-model="startweight" name="startweight" class="form-control" :class="{ 'is-invalid': submitted && !startweight }" />
-                <div v-show="submitted && !startweight" class="invalid-feedback">Start weight is required</div>
+            <div class="startWeight">
+                <label htmlFor="startWeight">Start Weight: {{swText}}</label>
+                <input placeholder="" id="startWeight" type="startWeight" v-model="startWeight" name="startWeight" class="form-control" :class="{ 'is-invalid': submitted && !startWeight }" />
+                <div v-show="submitted && !startWeight" class="invalid-feedback">Start weight is required</div>
             </div>
             <div class="submit">
-               <button @click="changeUserInfo(username, height, targetweight, targetdate, startweight)" name="addButton">Change User Information</button>
+               <button @click="changeUserInfo()" name="addButton">Change User Information</button>
             </div>
       </form>
     </div>
+    <h3>{{ message }}</h3>
   </div>
 </template>
 
