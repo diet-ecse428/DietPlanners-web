@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello.vue'
-import Login from '@/components/Login.vue'
 import Register from '@/components/Register.vue'
 import Logbook from '@/components/Logbook.vue'
 import MyAccount from '@/components/MyAccount.vue'
@@ -21,11 +20,6 @@ export default new Router({
       path: '/app/logbook',
       name: 'Logbook',
       component: Logbook
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
     },
     {
       path: '/register',

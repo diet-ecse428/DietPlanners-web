@@ -30,6 +30,7 @@ export default {
   name: 'register',
   data () {
     return {
+      user: null,
 
       username: "",
       height: "",
@@ -37,32 +38,7 @@ export default {
       targetDate: "",
       startWeight: "",
 
-      logbookId: 1,
-      selectedEntryId: null,
-      selectedEntry: null,
-      selectedFoodId: null,
-      selectedFood: null,
-
-      entries: [],
-      foods: [],
-      workouts: [],
-      liquids: [],
-
-      newTotalCalCount: "",
-      newNote: "",
-      newDate: "",
-
-      newFoodCalories: "",
-      newFoodServing: "",
-      newFoodMealType: "Breakfast",
-
-      newWorkoutType: "",
-      duration: "",
-      caloriesLost:"",
-
       message: "",
-      foodMessage: "",
-      logbookMessage: "",
 
       usernameText: "",
       heightText: "",
@@ -70,75 +46,76 @@ export default {
       tdText: "",
       swText: "",
 
-      submitted: false
     }
-  }, beforeMount() {
-    console.log("mount");
-    this.refreshAccount();
   },
   created: function () {
-    if (localStorage.getItem('user') == null) {
+    user = localStorage.getItem('user');
+    if (user == null) {
       this.$router.push('/');
       window.alert('Please Log In');
     }
     this.refreshAccount();
+
   },
   methods: {
+
     changeUserInfo: async function() {
       try{
-        var user = JSON.parse(localStorage.getItem('user'));
-        console.log(user.username);
-        let response = await AXIOS.post('/api/user/userInfo/'+ user.username + '/' + height.value + '/' + targetWeight.value+ '/' + targetDate.value + '/' + startWeight.value);
-        console.log(response);
-        if (response.data != "") {
-            this.refreshAccount();
-            this.message = '';
-        }
-        else {
-          this.logbookMessage = "error in changing user info"
-        }
-      }catch(error){
-        this.message = 'You\'re account information could not be updated at this time!';
-      }
-    },
-    refreshAccount: async function(){
-      try{
-          console.log('REFRESH!!');
-          var user = JSON.parse(localStorage.getItem('user'));
-          this.usernameText = user.username;
+        var url = '/api/user/userInfo/'+ this.user.username + '/' + height.value + '/' + targetWeight.value + '/' + targetDate.value + '/' + startWeight.value + '/'
+        console.log(url);
+        let userResponse = await AXIOS.post(url);
 
-          let response = await AXIOS.get('/api/user/get/' + user.username + '/', {}, {});
+        if (userResponse.data != null) {
 
-          var updatedUser = response.data;
-          console.log(updatedUser);
-
-        var storedUser = {
-          name: updatedUser.name,
-          lastName: updatedUser.lastName,
-          email: updatedUser.email,
-          username: updatedUser.username,
-          height: updatedUser.height,
-          targetWeight: updatedUser.targetWeight,
-          targetDate: updatedUser.targetDate,
-          startWeight: updatedUser.startWeight
-        };
-
+          user = userResponse.data;
+          console.log(user);
+          var storedUser = {
+            name: user.name,
+            lastName: user.lastName,
+            email: user.email,
+            username: user.username,
+            height: user.height,
+            targetWeight: user.targetWeight,
+            targetDate: user.targetDate,
+            startWeight: user.startWeight,
+          };
           localStorage.setItem('user',JSON.stringify(storedUser));
 
-          this.heightText = updatedUser.height;
-          this.twText = updatedUser.targetWeight;
-          this.tdText = updatedUser.targetDate.toString().split("-").reverse().join("-");
-          this.swText = updatedUser.startWeight;
+          this.refreshAccount()
+        }
+        else {
+          this.message = "There was an error updating your account. Please contact support.";
+        };
+
+      }catch(error){
+        this.message = 'Please fill all the fields!';
+      }
+    },
+    refreshAccount: function(){
+      try{
+          this.user = JSON.parse(localStorage.getItem('user'));
+          console.log(this.user);
+
+          this.usernameText = this.user.username;
+          this.heightText = this.user.height;
+          this.twText = this.user.targetWeight;
+          this.tdText = this.user.targetDate;
+          this.swText = this.user.startWeight;
 
           this.height = '';
           this.targetDate = '';
           this.targetWeight = '';
           this.startWeight = '';
 
+          this.heightError = null;
+          this.targetWeightError = null;
+          this.targetDateError = null;
+          this.startWeightError = null;
+
+          this.message = "";
       } catch(error) {
         console.log(error.message);
-        this.errorRoute = error.message;
-        this.message = 'You\'re account information could not be updated at this time!'
+        this.message = 'Your account information could not be updated at this time!'
       }
     }
   }
