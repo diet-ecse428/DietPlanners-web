@@ -120,6 +120,8 @@ export default {
     },
     entryFilter: function(entry) {
       this.selectedEntry = entry;
+      console.log("selected entry");
+      console.log(this.selectedEntry);
     },
     foodFilter: function(food) {
       this.selectedFood = food;

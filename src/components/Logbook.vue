@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; selectedEntryDate = data.date ; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
+            <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; selectedEntryDate = data.date; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
               <td>{{data.entryId}}</td>
               <td>{{data.date}}</td>
               <td>{{data.totalCalCount}}</td>
@@ -43,12 +43,11 @@
     </div>
 
     <div v-if="entrySelected" id="entry">
-      <button @click="backToLogbook()" name="backButton">Back to Logbook</button>
+      <button @click="backToLogbook()" name="backButton" class="backButton">Back to Logbook</button>
+      <button v-if="foodsSelected || liquidsSelected || workoutsSelected" @click="backToEntry()" name="backButtonEntry" class="backButton">Back to Entry</button>
       <br/>
-      <button v-if="foodsSelected || liquidsSelected || workoutsSelected" @click="backToEntry()" name="backButtonEntry">Back to Entry</button>
       <br/>
-      <br/>
-      <h1>
+      <h1 v-if="!foodsSelected && !liquidsSelected && !workoutsSelected">
         Entry of {{selectedEntryDate}}
       </h1>
 
@@ -253,5 +252,9 @@
   }
   .foods {
     display: ;
+  }
+
+  .backButton {
+    display: block;
   }
 </style>
