@@ -131,8 +131,10 @@ export default {
     },
     loadLogbook: async function(){
       try{
+        let logresponse = await AXIOS.get('/api/user/getLogbook/' + JSON.parse(localStorage.getItem('user')).username + '/', {}, {});
+        this.logbookId = logresponse.data.logbookId;
         this.entries = [];
-        let response = await AXIOS.get('/api/entry/getAllEntries/' + this.logbookId+ '/', {}, {});
+        let response = await AXIOS.get('/api/entry/getAllEntries/' + this.logbookId + '/', {}, {});
         console.log(response);
         this.response = response.data;
         console.log(this.response);
@@ -147,7 +149,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.logbookMessage = error.message;
       }
     },
     loadEntry: function(){
@@ -171,7 +173,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.foodMessage = error.message;
       }
     },
     loadLiquids: async function(){
@@ -188,7 +190,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.liquidMessage = error.message;
       }
     },
     loadWorkouts: async function(){
@@ -206,7 +208,7 @@ export default {
         }
         }catch(error){
           console.log(error.message);
-          this.errorRoute = error.message;
+          this.workoutMessage = error.message;
         }
     },
     addFoodToEntry: async function(calories, serving, mealType) {
@@ -227,7 +229,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.foodMessage = error.message;
       }
       this.loadFoods();
     },
@@ -248,7 +250,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.foodMessage = error.message;
       }
       this.loadFoods();
     },
@@ -270,7 +272,7 @@ export default {
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.liquidMessage = error.message;
       }
       this.loadLiquids();
     },
@@ -313,7 +315,7 @@ export default {
         this.loadWorkouts();
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.workoutMessage = error.message;
       }
     }
   }
