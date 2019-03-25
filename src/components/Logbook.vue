@@ -31,11 +31,11 @@
       <h3>
         Add Entry
       </h3>
-      <input v-model="newTotalCalCount" placeholder="Total Calories">
+      <input required v-model="newTotalCalCount" placeholder="Total Calories">
       <br />
-      <input v-model="newNote" placeholder="Note">
+      <input required v-model="newNote" placeholder="Note">
       <br />
-      <input v-model="newDate" placeholder="Date (dd-mm-yyyy)">
+      <input required v-model="newDate" placeholder="Date (dd-mm-yyyy)">
       <br />
       <button @click="addEntryToLogbook(newTotalCalCount, newNote, newDate)" name="addButton">Add to Logbook</button>
       <br />
@@ -89,9 +89,9 @@
           <h3>
             Add Food
           </h3>
-          <input v-model="newFoodCalories" placeholder="Calories">
+          <input required v-model="newFoodCalories" placeholder="Calories">
           <br />
-          <input v-model="newFoodServing" placeholder="Serving">
+          <input required v-model="newFoodServing" placeholder="Serving">
           <br />
           <select v-model="newFoodMealType" placeholder="Meal Type">
             <option value="Breakfast">Breakfast</option>
@@ -136,9 +136,9 @@
             Add Liquid
           </h3>
 
-          <input v-model="newLiquidCalories" placeholder="Calories">
+          <input required v-model="newLiquidCalories" placeholder="Calories">
           <br />
-          <input v-model="newLiquidVolume" placeholder="Serving">
+          <input required v-model="newLiquidVolume" placeholder="Serving">
           <br />
           <br />
           <button @click="addLiquidToEntry(newLiquidCalories, newLiquidVolume)" name="addButton">Add to Entry</button>
@@ -177,9 +177,9 @@
             <option value="strength training">Strength Training</option>
           </select>
           <br/>
-          <input v-model="duration" placeholder="Duration (minutes)">
+          <input required v-model="duration" placeholder="Duration (minutes)">
           <br />
-          <input v-model="caloriesLost" placeholder="Calories Burned">
+          <input required v-model="caloriesLost" placeholder="Calories Burned">
           <br />
           <button @click="addWorkoutToEntry(selectedEntryId,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
           <br/>
