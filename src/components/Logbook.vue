@@ -47,9 +47,15 @@
       <button v-if="foodsSelected || liquidsSelected || workoutsSelected" @click="backToEntry()" name="backButtonEntry" class="backButton">Back to Entry</button>
       <br/>
       <br/>
-      <h1 v-if="!foodsSelected && !liquidsSelected && !workoutsSelected">
-        Entry of {{selectedEntryDate}}
-      </h1>
+      <div id="entryInfo" v-if="!foodsSelected && !liquidsSelected && !workoutsSelected">
+        <h1>
+          Entry of {{selectedEntryData.date}}
+        </h1>
+        <p> Total calories: {{selectedEntryData.totalCalCount}} </p>
+        <p> Remaining calories: {{selectedEntryData.remainingCal}} </p>
+        <h3> Note</h3>
+        <p>{{selectedEntryData.note}} </p>
+      </div>
 
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="foodsSelected = true" name="foodsButton">Foods</button>
       <button v-if="!foodsSelected && !liquidsSelected && !workoutsSelected" @click="liquidsSelected = true" name="liquidsButton">Liquids</button>

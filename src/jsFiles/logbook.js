@@ -56,8 +56,8 @@ export default {
     return {
       logbookId: 6,
       entrySelected: false,
+      selectedEntryData: null,
       selectedEntryId: null,
-      selectedEntryDate: null,
       selectedEntry: null,
       selectedFoodId: null,
       selectedFood: null,
@@ -118,10 +118,10 @@ export default {
       }
       this.loadLogbook();
     },
-    entryFilter: function(entry) {
+    entryFilter: async function(entry) {
       this.selectedEntry = entry;
       console.log("selected entry");
-      console.log(this.selectedEntry);
+      console.log(entry);
     },
     foodFilter: function(food) {
       this.selectedFood = food;
@@ -152,8 +152,15 @@ export default {
         this.message = error.message;
       }
     },
-    loadEntry: function(){
-      //called when an entry is selected from the logbook
+    loadEntry: async function(){
+      try {
+        this.selectedEntryData = null;
+        let entry = await AXIOS.get('/api/entry/get/' + this.selectedEntryId + '/', {}, {});
+        this.selectedEntryData = entry.data;
+      }catch(error){
+        console.log(error.message);
+        this.message = error.message;
+      }
       this.loadFoods()
       this.loadLiquids()
       this.loadWorkouts();
