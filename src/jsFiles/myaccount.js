@@ -127,7 +127,7 @@ export default {
 
           this.heightText = updatedUser.height;
           this.twText = updatedUser.targetWeight;
-          this.tdText = updatedUser.targetDate;
+          this.tdText = updatedUser.targetDate.toString().split("-").reverse().join("-");
           this.swText = updatedUser.startWeight;
 
           this.height = '';

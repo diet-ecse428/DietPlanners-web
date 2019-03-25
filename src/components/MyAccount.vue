@@ -6,23 +6,23 @@
                 <label>Username: </label><p>{{usernameText}}</p>
             </div>
             <div class="height">
-                <label htmlFor="height">Height: {{heightText}} </label>
-                <input placeholder="" id="height" type="height"  v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
+                <label htmlFor="height">Height: {{heightText}} cm</label>
+                <input placeholder="cm" id="height" type="height"  v-model="height" name="height" class="form-control" :class="{ 'is-invalid': submitted && !height }" />
                 <div v-show="submitted && !height" class="invalid-feedback">Height is required</div>
             </div>
             <div class="targetWeight">
-                <label htmlFor="targetWeight">Target Weight: {{twText}} </label>
-                <input placeholder="" id="targetWeight" type="targetWeight"  v-model="targetWeight" name="targetWeight" class="form-control" :class="{ 'is-invalid': submitted && !targetWeight }" />
+                <label htmlFor="targetWeight">Target Weight: {{twText}} kg </label>
+                <input placeholder="kg" id="targetWeight" type="targetWeight"  v-model="targetWeight" name="targetWeight" class="form-control" :class="{ 'is-invalid': submitted && !targetWeight }" />
                 <div v-show="submitted && !targetweight" class="invalid-feedback">Target weight is required</div>
             </div>
             <div class="targetDate">
                 <label htmlFor="targetDate">Target Date: {{tdText}}</label>
-                <input placeholder="" id="targetDate" type="targetDate"  v-model="targetDate" name="targetDate" class="form-control" :class="{ 'is-invalid': submitted && !targetDate }" />
+                <input placeholder="dd-mm-yyyy" id="targetDate" type="targetDate"  v-model="targetDate" name="targetDate" class="form-control" :class="{ 'is-invalid': submitted && !targetDate }" />
                 <div v-show="submitted && !targetDate" class="invalid-feedback">Target date is required</div>
             </div>
             <div class="startWeight">
-                <label htmlFor="startWeight">Start Weight: {{swText}}</label>
-                <input placeholder="" id="startWeight" type="startWeight" v-model="startWeight" name="startWeight" class="form-control" :class="{ 'is-invalid': submitted && !startWeight }" />
+                <label htmlFor="startWeight">Start Weight: {{swText}} kg</label>
+                <input placeholder="kg" id="startWeight" type="startWeight" v-model="startWeight" name="startWeight" class="form-control" :class="{ 'is-invalid': submitted && !startWeight }" />
                 <div v-show="submitted && !startWeight" class="invalid-feedback">Start weight is required</div>
             </div>
             <div class="submit">
