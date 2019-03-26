@@ -3,23 +3,17 @@
   <div class="hello">
     <div id="nav"></div>
       <div class="bg"></div>
-	<br> <br> <br>
-  <!-- <form action="/#/app"> -->
-  <div class="form-group row">
-  
-    <!-- <div class="col-xs-6 offset-sm-5 text-center"> -->
+	<br> <br> <br><br><br>
+    <div class="form-group row">
     <h1>Welcome to DietPlanners!</h1>
-    <!-- </div> -->
     </div>
 
 <div class="form-group row">
-    <!-- <div class="col-xs-6 offset-sm-5 text-center"> -->
       <h2>DietPlanners is a web based application that helps   
         users track <br> and plan their weight loss journey.  
         </br></br>
         Login to your account or</br> Register bellow to begin!
       </h2>
-    <!-- </div> -->
     </div>
     <div class="form-group row">
   <div class="col-xs-6 offset-sm-5 text-center">
@@ -85,26 +79,28 @@
 <style scoped>
 label {
   background-color: none;
-  color: white;
+  color: gray;
   font-weight: bold;
   padding: 4px;
   /* font-size: xx-small; */
 }
-
+/* 
 #home{
    background: url("../assets/background.png") no-repeat center center fixed ;  
-    height: 45em; 
-    /* width: 45em; */
-    /* -webkit-background-size:cover;
+    height: 55em; 
+
+    width: 45em;
+    -webkit-background-size:cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover; */
+    background-size: cover; 
+
     background-repeat: no-repeat;
     background-size: cover;
     opacity: 0.6;     
-}
+} */
 h1{
-  color: white;
+  color: black;
   font-weight: bold;
   background-color: transparent;
   /* display: center; */
@@ -115,14 +111,9 @@ h1{
   
 }
 h2{
-  color: white;
+  color: black;
   font-size: 20px;
-  /* font-weight: bold; */
   background-color: transparent;
-  /* display: center; */
-  /* padding: 30px; */
-  /* padding-bottom: 30px; */
-  /* text-align: center; */
   margin:auto;
   
 }
@@ -146,30 +137,6 @@ a {
     font-size: 20px;
     border-radius: 20px;
 }
-
-/* h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-router-link {
-    position: absolute;
-    font-weight: bold; 
-    font-size: 30
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-*/
 
 /* The sidebar menu */
 .sidenav {

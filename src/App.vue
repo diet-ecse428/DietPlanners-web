@@ -27,8 +27,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /* color: #2c3e50;
-  margin-top: 60px; */
+  /* color: white; */
+  /* margin-top: 60px; */
+
+  background: url("./assets/background-opacity.png") no-repeat center center fixed ;  
+    height: 55em; 
+    /* width: 45em; */
+    /* -webkit-background-size:cover; */
+    -moz-background-size: cover;
+    /* -o-background-size: cover; */
+    background-size: cover; 
+    background-repeat: no-repeat; */
+    background-size: cover;
+    /* opacity: 0.7;    */
 }
 
 img {
