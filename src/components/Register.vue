@@ -1,5 +1,6 @@
 <template>
   <div class="reg">
+    <h3 style="background-color:powderblue; margin-top: 100px; color: red">{{ message }}</h3>
     <div id="form">
       <form @submit.prevent="handleSubmit">
             <div class="name">
@@ -34,9 +35,6 @@
                <router-link to="/"><b>HOME</b></router-link>
             </div>
       </form>
-      <div id="error" style="margin-top: 10px;">
-        <p id="message">{{message}}</p>
-      </div>
     </div>
   </div>
 </template>

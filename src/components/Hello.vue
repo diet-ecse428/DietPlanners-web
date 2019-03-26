@@ -49,7 +49,7 @@
 <div class="col-xs-4 col-sm-3 offset-sm-4">
   <router-link to="/register"><button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Register</button></router-link>
 </div>
-  <p style="background-color:powderblue;">{{ errorMessage }}</p>
+  <p style="background-color:powderblue; margin: 50px;">{{ errorMessage }}</p>
 
 </div>
 </div>

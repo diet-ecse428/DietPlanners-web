@@ -46,6 +46,11 @@ export default {
       tdText: "",
       swText: "",
 
+      heightError: "",
+      targetWeightError: "",
+      targetDateError: "",
+      startWeightError: "",
+
     }
   },
   created: function () {
@@ -64,7 +69,7 @@ export default {
         var url = '/api/user/userInfo/'+ this.user.username + '/' + height.value + '/' + targetWeight.value + '/' + targetDate.value + '/' + startWeight.value + '/'
         let userResponse = await AXIOS.post(url);
 
-        if (userResponse.data != null) {
+        if (userResponse.data != "") {
 
           user = userResponse.data;
           var storedUser = {

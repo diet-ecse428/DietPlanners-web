@@ -22,7 +22,7 @@
       </div>
     </nav>
     <div class="account-page">
-      
+      <h5 style="background-color:powderblue; margin: 50px; color: red">{{ message }}</h5>
     <form @submit.prevent="changeUserInfo">
             <div class="username">
                 <label>Username: </label><p>{{usernameText}}</p>
@@ -52,7 +52,6 @@
             </div>
       </form>
     </div>
-    <h3 style="background-color:powderblue; margin-top: 100px">{{ message }}</h3>
   </div>
 </template>
 
