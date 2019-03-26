@@ -52,7 +52,7 @@
             </div>
       </form>
     </div>
-    <h3>{{ message }}</h3>
+    <h3 style="background-color:powderblue; margin-top: 100px">{{ message }}</h3>
   </div>
 </template>
 
