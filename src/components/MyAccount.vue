@@ -51,10 +51,8 @@
                <button @click="changeUserInfo()" name="addButton">Change User Information</button>
             </div>
       </form>
-      <div id="error" style="margin-top: 10px;">
-        <p id="message">{{message}}</p>
-      </div>
     </div>
+    <h3 style="background-color:powderblue; margin-top: 100px">{{ message }}</h3>
   </div>
 </template>
 
