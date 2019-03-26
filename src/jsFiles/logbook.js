@@ -125,8 +125,8 @@ export default {
         if (mm < 10) {
           mm = '0' + mm;
         } 
-        // var today = yyyy + '-' + mm + '-' + dd;
-        var today = dd + '-' + mm + '-' + yyyy;
+        var today = yyyy + '-' + mm + '-' + dd;
+        // var today = dd + '-' + mm + '-' + yyyy;
         date = today
 
 
@@ -259,7 +259,8 @@ export default {
           this.message = "error in adding food entry"
         }
       }catch(error){
-        this.message = error.message;
+        var errorMsg = e.response.data.message
+        this.message = error.response.data.message
       }
       this.loadFoods();
     },
