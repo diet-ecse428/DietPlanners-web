@@ -1,5 +1,26 @@
 <template>
   <div id="logbook">
+        <nav class="navbar navbar-expand-md navbar-light sticky-top" style="background-color:#F3FBFE;">
+      <a class="navbar-brand" href="/" style="font-size:140%" > <img src="../assets/logo2.png" class="d-inline-block align-top"></a>
+
+      <div class="navbar" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <router-link to="/app/myaccount" class="nav-link" style="font-size:140%">My Account<span class="sr-only">(current)</span></router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/app/logbook" class="nav-link offset-sm-2" style="font-size:140%" >Logbook<span class="sr-only">(current)</span></router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/app/progress" class="nav-link offset-sm-6" style="font-size:140%" >Progress<span class="sr-only">(current)</span></router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/" class="nav-link offset-sm-10" style="font-size:140%" v-on:click="loggedIn = false">Logout<span class="sr-only">(current)</span></router-link>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
     <div v-if="!entrySelected" id="logbookEntries">
       <h1>
         LOGBOOK
