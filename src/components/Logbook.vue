@@ -171,11 +171,11 @@
           <h3>
             Add Workout
           </h3>
-          <select v-model="newWorkoutType" >
-            <option value="" disabled hidden> Workout Type</option>
-            <option value="cardio">Cardio</option>
-            <option value="strength training">Strength Training</option>
-          </select>
+          <select v-model="newWorkoutType"  >
+          <option value="" disabled hidden> Workout Type</option>
+          <option value="cardio">Cardio</option>
+          <option value="strength training">Strength Training</option>
+        </select>
           <br/>
           <input required v-model="duration" placeholder="Duration (minutes)">
           <br />
@@ -257,7 +257,7 @@
     background-color: lightskyblue;
   }
   .foods {
-    display: ;
+    display:;
   }
 
   .backButton {

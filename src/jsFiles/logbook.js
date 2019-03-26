@@ -267,6 +267,7 @@ export default {
         return;
       }
 
+
       try{
         let response = await AXIOS.post('/api/liquid/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&volume=' + volume );
         console.log(response);
@@ -311,8 +312,9 @@ export default {
         return;
       }
 
+
       try{
-        let response = await AXIOS.post('/api/workout/create?entryid=' + this.selectedEntryId+ '&caloriesLost=' + this.caloriesLost + '&type=' + this.type + '&duration=' + this.duration);
+        let response = await AXIOS.post('/api/workout/create?entryid=' + this.selectedEntryId+ '&caloriesLost=' + this.caloriesLost + '&type=' + type + '&duration=' + this.duration);
         console.log(response);
 
         if (response != null) {
