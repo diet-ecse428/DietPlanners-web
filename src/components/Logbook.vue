@@ -45,7 +45,7 @@
             </tr>
         </tbody>
       </table>
-      <p style="background-color:powderblue;">{{ message }}</p>
+      <p style="background-color:powderblue; margin: 50px;">{{ message }}</p>
       <button @click="selectEntry()" name="selectEntryButton">Go to selected entry</button>
       <br />
       <br />
@@ -285,7 +285,7 @@
     background-color: lightskyblue;
   }
   .foods {
-    display:;
+    display: ;
   }
 
   .backButton {

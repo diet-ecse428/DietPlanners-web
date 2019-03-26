@@ -34,7 +34,16 @@ export default {
     return {
 
       username: "",
+      name: "",
+      last: "",
+      email: "",
+      password: "",
+      height: "",
+      targetweight: "",
+      targetdate: "",
+      startweight: "",
 
+      message: ""
     }
   },
   created: function () {
@@ -42,20 +51,19 @@ export default {
   methods: {
     addUserInfo: async function(name, last, username, email, password, height, targetweight, targetdate, startweight) {
       try{
-        let response = await AXIOS.post('/api/user/create?name=' + name+ '&last=' + last + '&username=' + username + '&email=' + email+ '&password=' + password + '&height=' + height + '&targetWeight=' + targetweight+ '&targetDate=' + targetdate + '&startWeight=' + startweight);
-        console.log(response);
+        let response = await AXIOS.post('/api/user/create/' + name + '/' + last + '/' + username + '/' + email+ '/' + password + '/' + height + '/' + targetweight+ '/' + targetdate + '/' + startweight);
 
-        if (response != null) {
+        if (response.data != "") {
             this.$router.push('/');
-            let logbookresponse = await AXIOS.post('/api/logbook/create/' + name)
-            window.alert("Successfully registered, please log in with your username and password.")
+            let logbookresponse = await AXIOS.post('/api/logbook/create/' + username);
+            this.message = '';
+            window.alert("Successfully registered, please log in with your username and password.");
         }
         else {
-          this.logbookMessage = "error in registering user"
+          this.message = "error in registering user"
         }
       }catch(error){
-        console.log(error.message);
-        this.logbookMessage = error.message;
+        this.message = 'Make sure to fill out all fields with the correct format.';
       }
     }
   }

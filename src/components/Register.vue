@@ -1,5 +1,6 @@
 <template>
   <div class="reg">
+    <h3 style="background-color:powderblue; margin-top: 100px; color: red">{{ message }}</h3>
     <div id="form">
       <form @submit.prevent="handleSubmit">
             <div class="name">
@@ -33,9 +34,6 @@
                <button id="btn" @click="addUserInfo(name, last, username, email, password, height, targetweight, targetdate, startweight)" name="addButton">Register</button>
                <router-link to="/"><b>HOME</b></router-link>
             </div>
-            <div id="error">
-              <p id="message"></p>
-            </div>
       </form>
     </div>
   </div>
@@ -60,6 +58,10 @@
   }
   input {
     margin: 5px;
+  }
+
+  #error {
+    background-color: powderblue;
   }
 </style>
 

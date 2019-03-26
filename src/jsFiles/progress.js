@@ -31,11 +31,13 @@ export default {
       selectedWeight: null,
       selectedPicture: null,
 
+      username: "",
+
       newWeight: "",
       newPicture: "",
       newDate: "",
 
-      progressMessage: "",
+      message: "",
 
       progressEntries: [],
 
@@ -68,14 +70,14 @@ export default {
         // };
         // var file = await getBase64(this.$refs.pictureInput.file);
 
-        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username='+this.staticUsername);
         console.log(response);
         this.progressMessage = "Successfully added entry to progress!";
+        let response = await AXIOS.post('/api/progress/create?weight='+weight+'&date='+date+'&username=' + this.username);
+        this.message = "";
         this.newWeight = "";
         this.newDate = "";
       }catch(error){
-        console.log(error.message);
-        this.progressMessage = "The progress entry could not be entered at this time! Please try again later."
+        this.message = "Make sure to fill out all fields with the correct format."
         this.errorRoute = error.message;
       }
       this.loadProgress();
@@ -87,12 +89,14 @@ export default {
       this.selectedPicture = picture;
     },
     refresh: function() {
-      this.loadProgress()
+      var user = JSON.parse(localStorage.getItem('user'));
+      this.username = user.username;
+      this.loadProgress();
     },
     loadProgress: async function(){
       try{
         this.progressEntries = [];
-        let response = await AXIOS.get('api/progress/getAllProgresses/'+this.staticUsername, {}, {});
+        let response = await AXIOS.get('api/progress/getAllProgresses/'+this.username, {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
           var progressEntry = new ProgressDto(response.data[i].id,
@@ -102,7 +106,6 @@ export default {
           this.progressEntries.push(progressEntry);
         }
       }catch(error){
-        console.log(error.message);
         this.errorRoute = error.message;
       }
     }

@@ -25,9 +25,10 @@
       <h1>
         Progress
       </h1>
-      <h3 style="margin-top:50px;">
+      <h2 style="margin-top:50px;">
         Add Progress Entry
-      </h3>
+      </h2>
+      <h5 style="background-color:powderblue; margin: 50px; color: red">{{ message }}</h5>
       <input v-model="newDate" placeholder="Date (yyyy-mm-dd)">
       <input v-model="newWeight" placeholder="New Weight">
       <br />
@@ -35,7 +36,6 @@
       <button @click="addEntryToProgress(newWeight, newDate)" name="addButton">Add to Progress</button>
       <br />
       <br />
-      <p>{{progressMessage}}</p>
       <table>
         <thead>
         <tr id="header">
