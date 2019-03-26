@@ -103,6 +103,16 @@ export default {
   methods: {
     addEntryToLogbook: async function(totcal, note, date) {
       try{
+        
+        if (parseInt(totcal) <= 0 || totcal == "" || date == ""){
+          this.message = "Please enter positive amount of calories";
+          return;
+        }
+        
+        if (totcal == "" || date == ""){
+          this.message = "Please fill in calories and date fields";
+          return;
+        }
         let response = await AXIOS.post('/api/entry/create?logbookId=' + this.logbookId+ '&totCalCount=' + totcal + '&note=' + note + '&date=' + date);
         console.log(response);
 

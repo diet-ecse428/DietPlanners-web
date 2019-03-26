@@ -24,6 +24,7 @@
             </tr>
         </tbody>
       </table>
+      <p style="background-color:powderblue;">{{ message }}</p>
       <button @click="selectEntry()" name="selectEntryButton">Go to selected entry</button>
       <br />
       <br />
@@ -189,7 +190,6 @@
       </div>
       </div>
     </div>
-    <p>{{ message }}</p>
   </div>
 
 </template>
