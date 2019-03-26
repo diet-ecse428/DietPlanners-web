@@ -62,13 +62,11 @@ export default {
     changeUserInfo: async function() {
       try{
         var url = '/api/user/userInfo/'+ this.user.username + '/' + height.value + '/' + targetWeight.value + '/' + targetDate.value + '/' + startWeight.value + '/'
-        console.log(url);
         let userResponse = await AXIOS.post(url);
 
         if (userResponse.data != null) {
 
           user = userResponse.data;
-          console.log(user);
           var storedUser = {
             name: user.name,
             lastName: user.lastName,
@@ -88,13 +86,12 @@ export default {
         };
 
       }catch(error){
-        this.message = 'Please fill all the fields!';
+        this.message = 'Please fill out all of the fields in the correct format.';
       }
     },
     refreshAccount: function(){
       try{
           this.user = JSON.parse(localStorage.getItem('user'));
-          console.log(this.user);
 
           this.usernameText = this.user.username;
           this.heightText = this.user.height;
@@ -114,7 +111,6 @@ export default {
 
           this.message = "";
       } catch(error) {
-        console.log(error.message);
         this.message = 'Your account information could not be updated at this time!'
       }
     }

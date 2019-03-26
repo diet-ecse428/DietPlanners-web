@@ -46,7 +46,6 @@ export default {
               var user = await AXIOS.get('/api/user/login/'+username+'/'+password);
               var user = user.data;
               if(user != "") {
-                    console.log(user);
                     var storedUser = {
                         name: user.name,
                         lastName: user.lastName,

@@ -114,7 +114,6 @@ export default {
           return;
         }
         let response = await AXIOS.post('/api/entry/create?logbookId=' + this.logbookId+ '&totCalCount=' + totcal + '&note=' + note + '&date=' + date);
-        console.log(response);
 
         if (response != null) {
           this.message = "Successfully added entry to logbook "
@@ -123,15 +122,12 @@ export default {
           this.message = "error in adding entry to logbook"
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
       this.loadLogbook();
     },
     entryFilter: async function(entry) {
       this.selectedEntry = entry;
-      console.log("selected entry");
-      console.log(entry);
     },
     foodFilter: function(food) {
       this.selectedFood = food;
@@ -145,9 +141,7 @@ export default {
         this.logbookId = logresponse.data.logbookId;
         this.entries = [];
         let response = await AXIOS.get('/api/entry/getAllEntries/' + this.logbookId + '/', {}, {});
-        console.log(response);
         this.response = response.data;
-        console.log(this.response);
         for (var i = 0; i < this.response.length; i++) {
           var entry = new EntryDto(response.data[i].date,
                                    response.data[i].remainingCal,
@@ -158,7 +152,6 @@ export default {
           this.entries.push(entry);
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
     },
@@ -168,7 +161,6 @@ export default {
         let entry = await AXIOS.get('/api/entry/get/' + this.selectedEntryId + '/', {}, {});
         this.selectedEntryData = entry.data;
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
       this.loadFoods()
@@ -189,7 +181,6 @@ export default {
           this.foods.push(food);
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
     },
@@ -206,7 +197,6 @@ export default {
           this.liquids.push(liquid);
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
     },
@@ -224,7 +214,6 @@ export default {
           this.workouts.push(workout);
         }
         }catch(error){
-          console.log(error.message);
           this.message = error.message;
         }
     },
@@ -236,7 +225,6 @@ export default {
 
       try{
         let response = await AXIOS.post('/api/food/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&mealtype=' + mealType + '&serving=' + serving);
-        console.log(response);
 
         if (response != null) {
           this.message = "Successfully added food "
@@ -245,7 +233,6 @@ export default {
           this.message = "error in adding food entry"
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
       this.loadFoods();
@@ -257,7 +244,6 @@ export default {
           return;
         }
         let response = await AXIOS.post('/api/food/remove/'+ this.selectedFoodId+'/', {}, {});
-        console.log(response);
 
         if (response != null) {
           this.message = "Successfully deleted food"
@@ -266,7 +252,6 @@ export default {
           this.message = "error in deleting food"
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
       this.loadFoods();
@@ -280,7 +265,6 @@ export default {
 
       try{
         let response = await AXIOS.post('/api/liquid/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&volume=' + volume );
-        console.log(response);
 
         if (response != null) {
           this.message = "Successfully added liquid"
@@ -289,7 +273,6 @@ export default {
           this.message = "error in adding liquid entry"
         }
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
       this.loadLiquids();
@@ -325,7 +308,6 @@ export default {
 
       try{
         let response = await AXIOS.post('/api/workout/create?entryid=' + this.selectedEntryId+ '&caloriesLost=' + this.caloriesLost + '&type=' + type + '&duration=' + this.duration);
-        console.log(response);
 
         if (response != null) {
           this.message = "successfully added workout to logbook"
@@ -335,7 +317,6 @@ export default {
         }
         this.loadWorkouts();
       }catch(error){
-        console.log(error.message);
         this.message = error.message;
       }
     }

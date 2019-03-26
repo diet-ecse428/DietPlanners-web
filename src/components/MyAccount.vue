@@ -51,8 +51,10 @@
                <button @click="changeUserInfo()" name="addButton">Change User Information</button>
             </div>
       </form>
+      <div id="error" style="margin-top: 10px;">
+        <p id="message">{{message}}</p>
+      </div>
     </div>
-    <h3>{{ message }}</h3>
   </div>
 </template>
 
@@ -115,6 +117,11 @@
     position: absolute;
     bottom: 1%;
     left: 21%;
+  }
+
+  #error {
+    background-color: powderblue;
+    color: red;
   }
 
 </style>

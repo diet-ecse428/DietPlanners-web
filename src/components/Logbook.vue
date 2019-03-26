@@ -58,7 +58,7 @@
       <br />
       <input required v-model="newNote" placeholder="Note">
       <br />
-      <input required v-model="newDate" placeholder="Date (dd-mm-yyyy)">
+      <input required v-model="newDate" placeholder="Date (yyyy-mm-dd)">
       <br />
       <button @click="addEntryToLogbook(newTotalCalCount, newNote, newDate)" name="addButton">Add to Logbook</button>
       </form>

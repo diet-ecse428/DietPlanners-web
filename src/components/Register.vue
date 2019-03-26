@@ -33,10 +33,10 @@
                <button id="btn" @click="addUserInfo(name, last, username, email, password, height, targetweight, targetdate, startweight)" name="addButton">Register</button>
                <router-link to="/"><b>HOME</b></router-link>
             </div>
-            <div id="error">
-              <p id="message"></p>
-            </div>
       </form>
+      <div id="error" style="margin-top: 10px;">
+        <p id="message">{{message}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +60,10 @@
   }
   input {
     margin: 5px;
+  }
+
+  #error {
+    background-color: powderblue;
   }
 </style>
 
