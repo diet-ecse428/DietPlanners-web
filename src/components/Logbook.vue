@@ -22,13 +22,12 @@
       </div>
     </nav>
     <div v-if="!entrySelected" id="logbookEntries">
-      <h1>
+      <h1 style="color: black">
         LOGBOOK
       </h1>
       <table>
         <thead>
           <tr id="header">
-            <th class="th">Entry Id</th>
             <th class="th">Date</th>
             <th class="th">Total Calories</th>
             <th class="th">Remaining Calories</th>
@@ -37,7 +36,6 @@
         </thead>
         <tbody>
             <tr v-for="(data, index) in entries" :key='index' v-on:click="selectedEntryId = data.entryId; selectedEntryDate = data.date; loadEntry(); entryFilter((data,index))" v-bind:class="{selected: selectedEntry === (data,index)}">
-              <td>{{data.entryId}}</td>
               <td>{{data.date}}</td>
               <td>{{data.totalCalCount}}</td>
               <td>{{data.remainingCal}}</td>
@@ -144,7 +142,6 @@
         <table >
           <thead>
           <tr id="header">
-            <th class="th">Id</th>
             <th class="th">Calories</th>
             <th class="th">Volume</th>
 
@@ -152,7 +149,6 @@
           </thead>
           <tbody>
           <tr v-for="(data, index) in liquids" :key='index'>
-            <td>{{data.id}}</td>
             <td>{{data.calories}}</td>
             <td>{{data.volume}}</td>
           </tr>
@@ -240,7 +236,7 @@
   }
 
   .th{
-    background-color: #1B93F7;
+    background-color: #F3FBFE;
     position: sticky;
     top:0;
   }
@@ -252,7 +248,7 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color:#0590fa; /* Light Blue */
+    background-color:#F3FBFE; /* Light Blue */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
 

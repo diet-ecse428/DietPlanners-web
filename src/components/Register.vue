@@ -3,6 +3,9 @@
     <h3 style="background-color:powderblue; margin-top: 100px; color: red">{{ message }}</h3>
     <div id="form">
       <form @submit.prevent="handleSubmit">
+         <h3 style="color: white">
+            Register
+          </h3>
             <div class="name">
                 <input required id="name" type="text" v-model="name" placeholder="Name"/>
             </div>
@@ -25,7 +28,7 @@
                 <input required id="tweight" type="text" v-model="targetweight" placeholder="Target Weight"/>
             </div>
             <div class="targetdate">
-                <input required id="tdate" type="text" v-model="targetdate" placeholder="Target Date"/>
+                <input required id="tdate" type="text" v-model="targetdate" placeholder="Target Date (yyyy-mm-dd)"/>
             </div>
             <div class="startweight">
                 <input required id="sweight" type="text" v-model="startweight" placeholder="Start Weight"/>

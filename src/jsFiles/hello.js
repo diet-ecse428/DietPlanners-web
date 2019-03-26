@@ -37,9 +37,10 @@ export default {
       localStorage.clear();
     },
     methods: {
+
         login: async function (username, password) {
             try {
-                if (username == "" || password == ""){
+                if (this.isNullOrWhitespace(username) || this.isNullOrWhitespace(password)){
                     this.errorMessage = "Please enter username and password";
                     return;
                 }
@@ -64,6 +65,9 @@ export default {
               }
             } catch(err){
             }
-        }
+        },
+        isNullOrWhitespace: function( input ) {
+            return !input || !input.trim();
+          }
     }
 }

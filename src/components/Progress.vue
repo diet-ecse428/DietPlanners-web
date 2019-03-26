@@ -68,7 +68,7 @@
   }
 
   .th{
-    background-color: #1B93F7;
+    background-color: #F3FBFE;
     position: sticky;
     top:0;
   }

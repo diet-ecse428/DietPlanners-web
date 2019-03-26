@@ -43,7 +43,7 @@
   <div class="form-group row">
 <div class="col-xs-6 col-sm-3 offset-sm-4">
 
-  <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block" v-on:click="login(username,password)">Login</button>
+  <button type="submit" style=" position: relative; right:5 ; margin:10px;font-size:120%" class="btn btn-secondary btn-block" v-on:click="login(username,password)">Login</button>
 
 </div>
 <div class="col-xs-4 col-sm-3 offset-sm-4">
