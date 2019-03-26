@@ -3,31 +3,31 @@
     <div id="form">
       <form @submit.prevent="handleSubmit">
             <div class="name">
-                <input id="name" type="text" v-model="name" placeholder="Name"/>
+                <input required id="name" type="text" v-model="name" placeholder="Name"/>
             </div>
             <div class="last">
-                <input id="last" type="text" v-model="last" placeholder="Lastname"/>
+                <input required id="last" type="text" v-model="last" placeholder="Lastname"/>
             </div>
             <div class="username">
-                <input id="username" type="text" v-model="username" placeholder="Username"/>
+                <input required id="username" type="text" v-model="username" placeholder="Username"/>
             </div>
             <div class="email">
-                <input id="email" type="text" v-model="email" placeholder="Email"/>
+                <input required id="email" type="text" v-model="email" placeholder="Email"/>
             </div>
             <div class="password">
-                <input id="password" type="text" v-model="password" placeholder="Password"/>
+                <input required id="password" type="text" v-model="password" placeholder="Password"/>
             </div>
             <div class="height">
-                <input id="height" type="text" v-model="height" placeholder="Height"/>
+                <input required id="height" type="text" v-model="height" placeholder="Height"/>
             </div>
             <div class="targetweight">
-                <input id="tweight" type="text" v-model="targetweight" placeholder="Target Weight"/>
+                <input required id="tweight" type="text" v-model="targetweight" placeholder="Target Weight"/>
             </div>
             <div class="targetdate">
-                <input id="tdate" type="text" v-model="targetdate" placeholder="Target Date"/>
+                <input required id="tdate" type="text" v-model="targetdate" placeholder="Target Date"/>
             </div>
             <div class="startweight">
-                <input id="sweight" type="text" v-model="startweight" placeholder="Start Weight"/>
+                <input required id="sweight" type="text" v-model="startweight" placeholder="Start Weight"/>
             </div>
             <div class="submit">
                <button id="btn" @click="addUserInfo(name, last, username, email, password, height, targetweight, targetdate, startweight)" name="addButton">Register</button>

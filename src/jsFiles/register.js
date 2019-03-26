@@ -46,16 +46,15 @@ export default {
         console.log(response);
 
         if (response != null) {
-            this.username = username;
-            EventBus.$emit('username', this.username);
-            this.$router.push('/app/myaccount');
+            this.$router.push('/');
+            window.alert("Successfully registered, please log in with your username and password.")
         }
         else {
           this.logbookMessage = "error in registering user"
         }
       }catch(error){
         console.log(error.message);
-        this.errorRoute = error.message;
+        this.logbookMessage = error.message;
       }
     }
   }
