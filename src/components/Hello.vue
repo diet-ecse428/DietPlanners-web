@@ -31,13 +31,14 @@
 <div class="container">
 <div class="col-xs-4 col-sm-3 offset-sm-4">
 
-  <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block" v-on:click="login(username,password)">Submit</button>
+  <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block" v-on:click="login(username,password)">Login</button>
 
 </div>
 <div class="col-xs-4 col-sm-3 offset-sm-4">
   <router-link to="/register"><button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Register</button></router-link>
 </div>
-    {{errorMessage}}
+  <p style="background-color:powderblue;">{{ errorMessage }}</p>
+
 </div>
 </div>
 <!-- </form> -->

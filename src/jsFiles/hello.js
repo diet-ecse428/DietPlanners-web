@@ -37,8 +37,12 @@ export default {
       localStorage.clear();
     },
     methods: {
-        login: async function (username,password) {
+        login: async function (username, password) {
             try {
+                if (username == "" || password == ""){
+                    this.errorMessage = "Please enter username and password";
+                    return;
+                }
               var user = await AXIOS.get('/api/user/login/'+username+'/'+password);
               var user = user.data;
               if(user != "") {
