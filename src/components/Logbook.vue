@@ -53,6 +53,7 @@
       <h3>
         Add Entry
       </h3>
+      <form>
       <input required v-model="newTotalCalCount" placeholder="Total Calories">
       <br />
       <input required v-model="newNote" placeholder="Note">
@@ -60,6 +61,7 @@
       <input required v-model="newDate" placeholder="Date (dd-mm-yyyy)">
       <br />
       <button @click="addEntryToLogbook(newTotalCalCount, newNote, newDate)" name="addButton">Add to Logbook</button>
+      </form>
       <br />
       <br />
     </div>
@@ -111,6 +113,7 @@
           <h3>
             Add Food
           </h3>
+          <form>
           <input required v-model="newFoodCalories" placeholder="Calories">
           <br />
           <input required v-model="newFoodServing" placeholder="Serving">
@@ -123,6 +126,7 @@
           </select>
           <br />
           <button @click="addFoodToEntry(newFoodCalories, newFoodServing, newFoodMealType)" name="addButton">Add to Entry</button>
+          </form>
           <br />
           <button @click="deleteFood(selectedFoodId)" name="addButton">Delete Selected Food</button>
           <br />
@@ -157,14 +161,14 @@
           <h3>
             Add Liquid
           </h3>
-
+          <form>
           <input required v-model="newLiquidCalories" placeholder="Calories">
           <br />
           <input required v-model="newLiquidVolume" placeholder="Serving">
           <br />
           <br />
           <button @click="addLiquidToEntry(newLiquidCalories, newLiquidVolume)" name="addButton">Add to Entry</button>
-          <br />
+            <br /></form>
           <br />
         </div>
       </div>
@@ -193,6 +197,7 @@
           <h3>
             Add Workout
           </h3>
+          <form>
           <select v-model="newWorkoutType"  >
           <option value="" disabled hidden> Workout Type</option>
           <option value="cardio">Cardio</option>
@@ -205,6 +210,7 @@
           <br />
           <button @click="addWorkoutToEntry(selectedEntryId,newWorkoutType,duration,caloriesLost)" name="addWorkoutButton">Add Workout to Entry</button>
           <br/>
+          </form>
       </div>
       </div>
     </div>
