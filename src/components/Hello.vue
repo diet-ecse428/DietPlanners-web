@@ -1,10 +1,27 @@
 <template>
     <div id="home">
   <div class="hello">
+    <div id="nav"></div>
       <div class="bg"></div>
 	<br> <br> <br>
   <!-- <form action="/#/app"> -->
   <div class="form-group row">
+  
+    <!-- <div class="col-xs-6 offset-sm-5 text-center"> -->
+    <h1>Welcome to DietPlanners!</h1>
+    <!-- </div> -->
+    </div>
+
+<div class="form-group row">
+    <!-- <div class="col-xs-6 offset-sm-5 text-center"> -->
+      <h2>DietPlanners is a web based application that helps   
+        users track <br> and plan their weight loss journey.  
+        </br></br>
+        Login to your account or</br> Register bellow to begin!
+      </h2>
+    <!-- </div> -->
+    </div>
+    <div class="form-group row">
   <div class="col-xs-6 offset-sm-5 text-center">
     <label for="username" style="font-size:140%">Username:</label>
     <input required type="text" class="form-control" id="username" placeholder="Username" v-model="username">
@@ -29,7 +46,8 @@
 </div>
 <div class="row">
 <div class="container">
-<div class="col-xs-4 col-sm-3 offset-sm-4">
+  <div class="form-group row">
+<div class="col-xs-6 col-sm-3 offset-sm-4">
 
   <button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block" v-on:click="login(username,password)">Submit</button>
 
@@ -38,6 +56,7 @@
   <router-link to="/register"><button type="submit" style="margin:10px;font-size:120%" class="btn btn-secondary btn-block">Register</button></router-link>
 </div>
     {{errorMessage}}
+</div>
 </div>
 </div>
 <!-- </form> -->
@@ -63,14 +82,48 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+label {
+  background-color: none;
+  color: white;
+  font-weight: bold;
+  padding: 4px;
+  /* font-size: xx-small; */
+}
 
-#home {
-   background-image: url("../assets/background.png") ; 
-    height: 40em; 
+#home{
+   background: url("../assets/background.png") no-repeat center center fixed ;  
+    height: 45em; 
+    /* width: 45em; */
+    /* -webkit-background-size:cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; */
     background-repeat: no-repeat;
     background-size: cover;
-    opacity: 0.5;
-
+    opacity: 0.6;     
+}
+h1{
+  color: white;
+  font-weight: bold;
+  background-color: transparent;
+  /* display: center; */
+  padding: 30px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin:auto;
+  
+}
+h2{
+  color: white;
+  font-size: 20px;
+  /* font-weight: bold; */
+  background-color: transparent;
+  /* display: center; */
+  /* padding: 30px; */
+  /* padding-bottom: 30px; */
+  /* text-align: center; */
+  margin:auto;
+  
 }
 ul {
   list-style-type: none;
@@ -130,5 +183,8 @@ a {
   padding-top: 20px;
 
 } 
+#nav{
+  display: none;
+}
 
 </style>
