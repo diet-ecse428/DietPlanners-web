@@ -1,5 +1,4 @@
 import axios from 'axios'
-import * as moment from 'moment';
 
 var config = require('../../config')
 
@@ -33,7 +32,8 @@ function LiquidDto(calories,volume,id,entryId){
   this.entryId = entryId;
 }
 
-function FoodDto(mealType,calories,serving,id,entryId){
+function FoodDto(name, mealType,calories,serving,id,entryId){
+  this.name = name;
   this.mealType = mealType;
   this.calories = calories;
   this.serving = serving;
@@ -191,7 +191,9 @@ export default {
         let response = await AXIOS.get('/api/food/getAllFoods/' + this.selectedEntryId+ '/', {}, {});
         this.response = response.data;
         for (var i = 0; i < this.response.length; i++) {
-          var food = new FoodDto(response.data[i].mealType,
+          var food = new FoodDto(
+                                    response.data[i].name,
+                                    response.data[i].mealType,
                                     response.data[i].calories,
                                     response.data[i].serving,
                                     response.data[i].id,
@@ -235,7 +237,7 @@ export default {
           this.message = error.message;
         }
     },
-    addFoodToEntry: async function(calories, serving, mealType) {
+    addFoodToEntry: async function(name, calories, serving, mealType) {
       
       if (this.selectedEntryId === null){
         this.message = "Please select an entry";
@@ -245,12 +247,12 @@ export default {
       try{
         
         //check if negative, equal to 0 or non-numeric value
-        if (parseInt(calories) <= 0 || calories.match(/[^$,.\d]/) || parseInt(serving) <= 0 || serving.match(/[^$,.\d]/)){
+        if (this.isNullOrWhitespace(name) || parseInt(calories) <= 0 || calories.match(/[^$,.\d]/) || this.isNullOrWhitespace(calories) || parseInt(serving) <= 0 || serving.match(/[^$,.\d]/) || this.isNullOrWhitespace(serving)){
           this.message = "Please enter valid calories and serving";
           return;
       }
 
-        let response = await AXIOS.post('/api/food/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&mealtype=' + mealType + '&serving=' + serving);
+        let response = await AXIOS.post('/api/food/create?name=' + name + '&entryid=' + this.selectedEntryId+ '&calories=' + calories + '&mealtype=' + mealType + '&serving=' + serving);
 
         if (response != null) {
           this.message = "Successfully added food "
@@ -259,7 +261,6 @@ export default {
           this.message = "error in adding food entry"
         }
       }catch(error){
-        var errorMsg = e.response.data.message
         this.message = error.response.data.message
       }
       this.loadFoods();
@@ -274,6 +275,7 @@ export default {
 
         if (response != null) {
           this.message = "Successfully deleted food"
+          this.selectedFoodId = null;
         }
         else {
           this.message = "error in deleting food"
@@ -292,7 +294,7 @@ export default {
 
       try{
         //check if negative, equal to 0 or non-numeric value
-        if (parseInt(calories) <= 0 || calories.match(/[^$,.\d]/) || parseInt(volume) <= 0 || volume.match(/[^$,.\d]/)){
+        if (parseInt(calories) <= 0 || this.isNullOrWhitespace(calories) || calories.match(/[^$,.\d]/) || parseInt(volume) <= 0 || volume.match(/[^$,.\d]/) || this.isNullOrWhitespace(volume)){
           this.message = "Please enter valid calories and volume";
           return;
       }
@@ -343,7 +345,7 @@ export default {
           return;
         }
         //check if negative, equal to 0 or non-numeric value
-        if (parseInt(this.duration) <= 0 || this.duration.match(/[^$,.\d]/) || parseInt(this.caloriesLost) <= 0 || this.caloriesLost.match(/[^$,.\d]/)){
+        if (parseInt(this.duration) <= 0 || this.isNullOrWhitespace(this.duration) || this.duration.match(/[^$,.\d]/) || parseInt(this.caloriesLost) <= 0 || this.caloriesLost.match(/[^$,.\d]/) || this.isNullOrWhitespace(this.caloriesLost)){
           this.message = "Please enter valid calories and serving";
           return;
       }
@@ -359,8 +361,12 @@ export default {
         }
         this.loadWorkouts();
       }catch(error){
-        this.message = error.message;
+        this.message = error.response.data.message;
       }
+    },
+
+    isNullOrWhitespace: function( input ) {
+      return !input || !input.trim();
     }
   }
 }

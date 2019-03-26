@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 var config = require('../../config');
 
@@ -59,6 +59,32 @@ export default {
           this.message = "Please enter valid weight";
           return;
         }
+
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+          dd = '0' + dd;
+        } 
+        if (mm < 10) {
+          mm = '0' + mm;
+        } 
+        var today = yyyy + '-' + mm + '-' + dd;
+        date = today
+
+
+
+        // if(moment(date, "YYYY-MM-DD", false).isValid()){
+        //   console.log("CHEEEEEEEEZ FALSE");
+        //   this.message("Please enter valid date");
+        //   return;
+        // }
+        // else{
+        //   console.log("CHEEEEEEEEZ true");
+        // }
+
 
         // const getBase64 = async (file) => {
         //   return new Promise((resolve, reject) => {

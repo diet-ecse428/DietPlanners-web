@@ -45,7 +45,7 @@
             </tr>
         </tbody>
       </table>
-      <p style="background-color:powderblue; margin: 50px;">{{ message }}</p>
+      <p style="background-color:powderblue; margin: 0px;">{{ message }}</p>
       <button @click="selectEntry()" name="selectEntryButton">Go to selected entry</button>
       <br />
       <br />
@@ -91,7 +91,7 @@
         <table >
           <thead>
             <tr id="header">
-              <th class="th">Food Id</th>
+              <th class="th">Name</th>
               <th class="th">Calories</th>
               <th class="th">Serving</th>
               <th class="th">Type</th>
@@ -100,7 +100,7 @@
           </thead>
           <tbody>
             <tr v-for="(data, index) in foods" :key='index' v-on:click="selectedFoodId = data.id; foodFilter((data,index));" v-bind:class="{selected: selectedFood === (data,index)}">
-              <td>{{data.id}}</td>
+              <td>{{data.name}}</td>
               <td>{{data.calories}}</td>
               <td>{{data.serving}}</td>
               <td>{{data.mealType}}</td>
@@ -113,6 +113,8 @@
             Add Food
           </h3>
           <form>
+          <input required v-model="newFoodName" placeholder="Name">
+          <br />
           <input required v-model="newFoodCalories" placeholder="Calories">
           <br />
           <input required v-model="newFoodServing" placeholder="Serving">
@@ -126,7 +128,7 @@
           <p style="background-color:powderblue;">{{ message }}</p>
 
           <br />
-          <button @click="addFoodToEntry(newFoodCalories, newFoodServing, newFoodMealType)" name="addButton">Add to Entry</button>
+          <button @click="addFoodToEntry(newFoodName, newFoodCalories, newFoodServing, newFoodMealType)" name="addButton">Add to Entry</button>
           </form>
           <br />
           <button @click="deleteFood(selectedFoodId)" name="addButton">Delete Selected Food</button>
@@ -169,7 +171,10 @@
           <br />
           <br />
           <button @click="addLiquidToEntry(newLiquidCalories, newLiquidVolume)" name="addButton">Add to Entry</button>
-            <br /></form>
+          <br />
+          <p style="background-color:powderblue;">{{ message }}</p>
+
+          </form>
           <br />
         </div>
       </div>
@@ -204,6 +209,8 @@
           <option value="cardio">Cardio</option>
           <option value="strength training">Strength Training</option>
         </select>
+        <p style="background-color:powderblue;">{{ message }}</p>
+
           <br/>
           <input required v-model="duration" placeholder="Duration (minutes)">
           <br />
@@ -229,7 +236,7 @@
     table-layout: fixed;
     width: 50%;
     height: auto;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
   }
 
   .th{
