@@ -15,7 +15,7 @@ function ProgressDto(id){
   this.id = id;
 }
 
-function ProgressDto(id,weight,username,date){
+function ProgressDto(id, weight, username, date){
   this.id = id;
   this.weight = weight;
   this.username = username;
@@ -52,6 +52,11 @@ export default {
   methods: {
     addEntryToProgress: async function(weight, date) {
       try{
+
+        if (parseInt(weight) <= 0 || weight.match(/[^$,.\d]/) ){
+          this.message = "Please enter valid weight";
+          return;
+        }
 
         // const getBase64 = async (file) => {
         //   return new Promise((resolve, reject) => {

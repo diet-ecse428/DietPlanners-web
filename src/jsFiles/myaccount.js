@@ -65,6 +65,12 @@ export default {
         console.log(url);
         let userResponse = await AXIOS.post(url);
 
+        if (parseInt(this.height) <= 0 || this.height.match(/[^$,.\d]/) || parseInt(this.targetWeight) <= 0 || this.targetWeight.match(/[^$,.\d]/) || parseInt(this.startWeight) <= 0 
+        || this.startWeight.match(/[^$,.\d]/)){
+          this.message = "Please enter valid fields";
+          return;
+        }
+
         if (userResponse.data != null) {
 
           user = userResponse.data;

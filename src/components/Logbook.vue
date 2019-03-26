@@ -58,13 +58,12 @@
       <br />
       <input required v-model="newNote" placeholder="Note">
       <br />
-      <input required v-model="newDate" placeholder="Date (dd-mm-yyyy)">
-      <br />
       <button @click="addEntryToLogbook(newTotalCalCount, newNote, newDate)" name="addButton">Add to Logbook</button>
       </form>
       <br />
       <br />
     </div>
+
 
     <div v-if="entrySelected" id="entry">
       <button @click="backToLogbook()" name="backButton" class="backButton">Back to Logbook</button>
@@ -124,6 +123,8 @@
             <option value="Dinner">Dinner</option>
             <option value="Snack">Snack</option>
           </select>
+          <p style="background-color:powderblue;">{{ message }}</p>
+
           <br />
           <button @click="addFoodToEntry(newFoodCalories, newFoodServing, newFoodMealType)" name="addButton">Add to Entry</button>
           </form>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import * as moment from 'moment';
 
 var config = require('../../config')
 
@@ -103,9 +104,8 @@ export default {
   methods: {
     addEntryToLogbook: async function(totcal, note, date) {
       try{
-
-        if ( totcal == "" || date == ""){
-          this.message = "Please fill in calories and date";
+        if ( totcal == ""){
+          this.message = "Please fill in calories";
           return;
         }
         //check if negative, equal to 0 or non-numeric value
@@ -113,6 +113,23 @@ export default {
           this.message = "Please enter valid calories";
           return;
         }
+      
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+          dd = '0' + dd;
+        } 
+        if (mm < 10) {
+          mm = '0' + mm;
+        } 
+        // var today = yyyy + '-' + mm + '-' + dd;
+        var today = dd + '-' + mm + '-' + yyyy;
+        date = today
+
+
        
         let response = await AXIOS.post('/api/entry/create?logbookId=' + this.logbookId+ '&totCalCount=' + totcal + '&note=' + note + '&date=' + date);
         console.log(response);
@@ -230,12 +247,20 @@ export default {
         }
     },
     addFoodToEntry: async function(calories, serving, mealType) {
+      
       if (this.selectedEntryId === null){
         this.message = "Please select an entry";
         return;
       }
 
       try{
+        
+        //check if negative, equal to 0 or non-numeric value
+        if (parseInt(calories) <= 0 || calories.match(/[^$,.\d]/) || parseInt(serving) <= 0 || serving.match(/[^$,.\d]/)){
+          this.message = "Please enter valid calories and serving";
+          return;
+      }
+
         let response = await AXIOS.post('/api/food/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&mealtype=' + mealType + '&serving=' + serving);
         console.log(response);
 
@@ -280,6 +305,11 @@ export default {
 
 
       try{
+        //check if negative, equal to 0 or non-numeric value
+        if (parseInt(calories) <= 0 || calories.match(/[^$,.\d]/) || parseInt(volume) <= 0 || volume.match(/[^$,.\d]/)){
+          this.message = "Please enter valid calories and volume";
+          return;
+      }
         let response = await AXIOS.post('/api/liquid/create?entryid=' + this.selectedEntryId+ '&calories=' + calories + '&volume=' + volume );
         console.log(response);
 
@@ -323,9 +353,18 @@ export default {
         return;
       }
 
-
       try{
-        let response = await AXIOS.post('/api/workout/create?entryid=' + this.selectedEntryId+ '&caloriesLost=' + this.caloriesLost + '&type=' + type + '&duration=' + this.duration);
+        if(type == ""){
+          this.message = "Please select workout type."
+          return;
+        }
+        //check if negative, equal to 0 or non-numeric value
+        if (parseInt(this.duration) <= 0 || this.duration.match(/[^$,.\d]/) || parseInt(this.caloriesLost) <= 0 || this.caloriesLost.match(/[^$,.\d]/)){
+          this.message = "Please enter valid calories and serving";
+          return;
+      }
+
+        let response = await AXIOS.post('/api/workout/create?entryid=' + this.selectedEntryId + '&caloriesLost=' + this.caloriesLost + '&type=' + type + '&duration=' + this.duration);
         console.log(response);
 
         if (response != null) {
