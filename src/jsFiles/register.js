@@ -47,6 +47,7 @@ export default {
 
         if (response != null) {
             this.$router.push('/');
+            let logbookresponse = await AXIOS.post('/api/logbook/create/' + name)
             window.alert("Successfully registered, please log in with your username and password.")
         }
         else {
